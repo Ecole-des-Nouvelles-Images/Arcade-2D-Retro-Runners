@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Attack
+  - Arrow
+  - LeftOutZone
+  - RightOutZone
+  - UpOutZone
+  - DeathZone
   layers:
   - Default
   - TransparentFX
