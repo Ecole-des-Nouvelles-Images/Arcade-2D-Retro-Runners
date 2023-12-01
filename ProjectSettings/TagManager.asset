@@ -11,6 +11,7 @@ TagManager:
   - RightOutZone
   - UpOutZone
   - DeathZone
+  - ShieldAttack
   layers:
   - Default
   - TransparentFX

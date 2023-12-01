@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,12 +8,13 @@ namespace Vincent.Scripts.Knight
 {
     public class KnightController : PlayerController
     {
+        public PlayerInput playerInput;
         public float speed;
         public float jumpForce;
         private Vector2 _movementInput;
         private Rigidbody2D _rigidbody2D;
         public BoxCollider2D _groundCollider;
-        //private bool _isGrounded;
+        private bool _isGrounded;
         private int _jumpCount;
 
         private bool _canDash = true;
@@ -22,11 +24,13 @@ namespace Vincent.Scripts.Knight
         private float _dashingCooldown = 1f;
         private TrailRenderer _trail;
 
-        private SpriteRenderer _spriteRenderer;
+        //private SpriteRenderer _spriteRenderer;
         public ParticleSystem _jumpParticle;
-        private PlayerManager _playerManager;
+        //private PlayerManager _playerManager;
 
         public GameObject attackBox;
+        public GameObject upAttackBox;
+        public GameObject downAttackBox;
         private float _attackTime = 0.4f;
         private float _attackCooldown = 0.4f;
         private bool _canAttack;
@@ -35,6 +39,7 @@ namespace Vincent.Scripts.Knight
         public int health;
         public int Dies;
         public int listID;
+        public Sprite portrait;
         
         public GameObject upPointer;
         public GameObject leftPointer;
@@ -46,17 +51,9 @@ namespace Vincent.Scripts.Knight
             _trail = GetComponent<TrailRenderer>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _playerManager = FindObjectOfType<PlayerManager>();
-            _playerManager.Players.Add(this.gameObject);
-            listID = _playerManager.Players.Count;
-            _spriteRenderer.color = _playerManager.Players.Count switch
-            {
-                1 => color1,
-                2 => color2,
-                3 => color3,
-                4 => color4,
-                _ => _spriteRenderer.color
-            };
             attackBox.SetActive(false);
+            upAttackBox.SetActive(false);
+            downAttackBox.SetActive(false);
             health = 150;
             Dies = 0;
             _canAttack = true;
@@ -70,8 +67,22 @@ namespace Vincent.Scripts.Knight
             _rigidbody2D.velocity = Vector2.zero;
         }
 
+        private void Start()
+        {
+            _playerManager.Players.Add(this.gameObject);
+            listID = _playerManager.Players.Count;
+            _spriteRenderer.color = _playerManager.Players.Count switch {
+                1 => color1,
+                2 => color2,
+                3 => color3,
+                4 => color4,
+                _ => _spriteRenderer.color
+            };
+        }
+
         private void Update() {
-            transform.Translate(new Vector3(_movementInput.x, 0, 0) * speed * Time.deltaTime) ;
+            //transform.Translate(new Vector3(_movementInput.x, 0, 0) * speed * Time.deltaTime) ;
+            _rigidbody2D.AddForce(new Vector3(_movementInput.x, 0, 0) * speed * Time.deltaTime, ForceMode2D.Impulse);
             transform.localScale = _movementInput.x switch {
                 < 0 => new Vector3(-1, 1, 1),
                 > 0 => new Vector3(1, 1, 1),
@@ -81,26 +92,30 @@ namespace Vincent.Scripts.Knight
                 Dies += 1;
                 Respawn();
             }
-            
             upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
             leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
-            if (transform.localScale.x == -1) leftPointer.transform.localScale = new Vector3(-1, 1, 1);
-            else leftPointer.transform.localScale = new Vector3(1, 1, 1);
-            rightPointer.transform.position = new Vector3(14.25f, transform.position.y,0);
-            if (transform.localScale.x == -1) rightPointer.transform.localScale = new Vector3(-1, 1, 1);
-            else rightPointer.transform.localScale = new Vector3(1, 1, 1);
+            leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
+            rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
         }
         
         
 
-        public void OnMove(InputAction.CallbackContext ctx) => _movementInput = ctx.ReadValue<Vector2>();
-            // Left Joystick -> Keyboard A and D
+        public void OnMove(InputAction.CallbackContext ctx)
+        {
+            if (playerInput)
+            {
+                _movementInput = ctx.ReadValue<Vector2>();
+            }   
+        }
+
+        // Left Joystick -> Keyboard A and D
         public void OnJump(InputAction.CallbackContext ctx) {
-            if (ctx.performed) Jump();
+            if (ctx.performed && playerInput) Jump();
         }
         // A button / X button -> Keyboard Space
         public void OnDash(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canDash) {
+            if (ctx.performed && _canDash && playerInput) {
                 switch (_movementInput.x)
                 {
                     case > 0 when dashPower < 0:
@@ -113,16 +128,23 @@ namespace Vincent.Scripts.Knight
         }
         // Right trigger (RT, R2) -> Keyboard E
         public void OnAttack(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canAttack) {
+            if (ctx.performed && _canAttack && _movementInput.y > 0.5f && playerInput) {
+                StartCoroutine(AttackUp());
+            }
+            else if (ctx.performed && _canAttack && _movementInput.y < -0.5 && !_isGrounded && playerInput) {
+                StartCoroutine(AttackDown());
+            }
+            else if (ctx.performed && _canAttack && playerInput) {
                 StartCoroutine(Attack());
             }
         }
 
         private void Jump() {
             if (_jumpCount > 1) return;
-            jumpForce = 650;
-            Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
-            _rigidbody2D.AddForce(jumpVec, ForceMode2D.Impulse);
+            //jumpForce = 650;
+            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
+            Vector2 jumpVec = new Vector2(0, jumpForce);
+            _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
             _jumpCount += 1;
             _jumpParticle.Play();
         }
@@ -137,7 +159,7 @@ namespace Vincent.Scripts.Knight
                 rightPointer.SetActive(true);
             }
             if (!other.CompareTag("Ground") || !_groundCollider) return;
-            //_isGrounded = true;
+            _isGrounded = true;
             _jumpCount = 0;
         }
         private void OnTriggerExit2D(Collider2D other) {
@@ -151,13 +173,12 @@ namespace Vincent.Scripts.Knight
                 rightPointer.SetActive(false);
             }
             if (!other.CompareTag("Ground") || !_groundCollider) return;
-            //_isGrounded = false;
+            _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 StartCoroutine(TakeDamage());
             }
-
             if (other.CompareTag("DeathZone")) {
                 health = 0;
             }
@@ -190,6 +211,23 @@ namespace Vincent.Scripts.Knight
             attackBox.SetActive(true);
             yield return new WaitForSeconds(_attackTime);
             attackBox.SetActive(false);
+            yield return new WaitForSeconds(_attackCooldown);
+            _canAttack = true;
+        }
+        private IEnumerator AttackUp() {
+            _canAttack = false;
+            upAttackBox.SetActive(true);
+            yield return new WaitForSeconds(_attackTime);
+            upAttackBox.SetActive(false);
+            yield return new WaitForSeconds(_attackCooldown);
+            _canAttack = true;
+        }
+        
+        private IEnumerator AttackDown() {
+            _canAttack = false;
+            downAttackBox.SetActive(true);
+            yield return new WaitForSeconds(_attackTime);
+            downAttackBox.SetActive(false);
             yield return new WaitForSeconds(_attackCooldown);
             _canAttack = true;
         }

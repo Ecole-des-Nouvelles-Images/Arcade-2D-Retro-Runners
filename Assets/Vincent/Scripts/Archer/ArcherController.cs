@@ -9,6 +9,7 @@ namespace Vincent.Scripts.Archer
 {
     public class ArcherController : PlayerController
     {
+        public PlayerInput playerInput;
         public float speed;
         public float jumpForce;
         private Vector2 _movementInput;
@@ -37,6 +38,7 @@ namespace Vincent.Scripts.Archer
         public int health;
         public int Dies;
         public int listID;
+        public Sprite portrait;
 
         public GameObject upPointer;
         public GameObject leftPointer;
@@ -48,16 +50,7 @@ namespace Vincent.Scripts.Archer
             _trail = GetComponent<TrailRenderer>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _playerManager = FindObjectOfType<PlayerManager>();
-            _playerManager.Players.Add(this.gameObject);
-            listID = _playerManager.Players.Count;
-            _spriteRenderer.color = _playerManager.Players.Count switch
-            {
-                1 => color1,
-                2 => color2,
-                3 => color3,
-                4 => color4,
-                _ => _spriteRenderer.color
-            };
+            
             health = 150;
             Dies = 0;
             _canAttack = true;
@@ -71,6 +64,20 @@ namespace Vincent.Scripts.Archer
             _rigidbody2D.velocity = Vector2.zero;
         }
 
+        private void Start()
+        {
+            _playerManager.Players.Add(this.gameObject);
+            listID = _playerManager.Players.Count;
+            _spriteRenderer.color = _playerManager.Players.Count switch
+            {
+                1 => color1,
+                2 => color2,
+                3 => color3,
+                4 => color4,
+                _ => _spriteRenderer.color
+            };
+        }
+
         private void Update() {
             transform.Translate(new Vector3(_movementInput.x, 0, 0) * speed * Time.deltaTime) ;
             transform.localScale = _movementInput.x switch {
@@ -82,27 +89,28 @@ namespace Vincent.Scripts.Archer
                 Dies += 1;
                 Respawn();
             }
-            
             upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
             leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
-            leftPointer.transform.localScale = new Vector3(1, 1, 1);
-            if (transform.localScale.x < 0) leftPointer.transform.rotation = Quaternion.Euler(0,0,-90);
-            else leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
             rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
-            rightPointer.transform.localScale = new Vector3(1, 1, 1);
-            if (transform.localScale.x < 0) rightPointer.transform.rotation = Quaternion.Euler(0,0,90);
-            else rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
-            
+            rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
         }
 
-        public void OnMove(InputAction.CallbackContext ctx) => _movementInput = ctx.ReadValue<Vector2>();
-            // Left Joystick -> Keyboard A and D
+        public void OnMove(InputAction.CallbackContext ctx)
+        {
+            if (playerInput)
+            {
+                _movementInput = ctx.ReadValue<Vector2>();
+            }
+        }
+
+        // Left Joystick -> Keyboard A and D
         public void OnJump(InputAction.CallbackContext ctx) {
-            if (ctx.performed) Jump();
+            if (ctx.performed && playerInput) Jump();
         }
         // A button / X button -> Keyboard Space
         public void OnDash(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canDash) {
+            if (ctx.performed && _canDash && playerInput) {
                 switch (_movementInput.x) {
                     case > 0 when dashPower < 0:
                     case < 0 when dashPower > 0:
@@ -114,15 +122,16 @@ namespace Vincent.Scripts.Archer
         }
         // Right trigger (RT, R2) -> Keyboard E
         public void OnAttack(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canAttack) {
+            if (ctx.performed && _canAttack && playerInput) {
                 StartCoroutine(Attack());
             }
         }
 
         private void Jump() {
             if (_jumpCount > 1) return;
-            jumpForce = 650;
-            Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
+            //jumpForce = 650;
+            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
+            Vector2 jumpVec = new Vector2(0, jumpForce);
             _rigidbody2D.AddForce(jumpVec, ForceMode2D.Impulse);
             _jumpCount += 1;
             _jumpParticle.Play();

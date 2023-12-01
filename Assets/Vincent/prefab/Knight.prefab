@@ -5545,6 +5545,7 @@ MonoBehaviour:
   health: 0
   Dies: 0
   listID: 0
+  portrait: {fileID: 21300000, guid: 8acfad1709e508744887416f5e3bbc0a, type: 3}
   upPointer: {fileID: 8394536705915695039}
   leftPointer: {fileID: 3854446067971489527}
   rightPointer: {fileID: 3207390692491354664}
