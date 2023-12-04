@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Vincent.Scripts.Archer;
 using Vincent.Scripts.Knight;
 using Vincent.Scripts.Player;
+using PlayerController = Vincent.Scripts.Player.PlayerController;
 
 
 public class UILifeBars : MonoBehaviour

@@ -1,25 +1,13 @@
-using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Vincent.Scripts.Player;
-using PlayerController = Vincent.Scripts.Player.PlayerController;
 
-
-namespace Vincent.Scripts.Archer
+namespace Vincent_Prod.Scripts.Characters
 {
-    public class ArcherController : PlayerController
+    public class Archer : PlayerController
     {
-        public PlayerInput playerInput;
-        public float speed;
-        public float jumpForce;
-        private Vector2 _movementInput;
-        private Rigidbody2D _rigidbody2D;
-        public BoxCollider2D _groundCollider;
-        //private bool _isGrounded;
-        private int _jumpCount;
-
+        //Dash
         private bool _canDash = true;
         private bool _isDashing;
         public float dashPower = 12;
@@ -27,68 +15,53 @@ namespace Vincent.Scripts.Archer
         private float _dashingCooldown = 1f;
         private TrailRenderer _trail;
 
-        private SpriteRenderer _spriteRenderer;
-        public ParticleSystem _jumpParticle;
-        private PlayerManager _playerManager;
-
+        //Attack
         public GameObject arrowPrefab;
-        private float _attackTime = 0.7f;
-        private float _attackCooldown = 0.4f;
-        private bool _canAttack;
-        private bool _damageTake;
-        private float _iFrame = 0.2f;
-        public int health;
-        public int Dies;
-        public int listID;
+
+        //UI
         public Sprite portrait;
 
-        public GameObject upPointer;
-        public GameObject leftPointer;
-        public GameObject rightPointer;
+        //Visuel
+        private SpriteRenderer _spriteRenderer;
         
+        //Manager
+        private PlayerManager _playerManager;
+        public int listID;
+
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _jumpCount = 2;
             _trail = GetComponent<TrailRenderer>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _playerManager = FindObjectOfType<PlayerManager>();
-            
             health = 150;
-            Dies = 0;
+            deaths = 0;
             _canAttack = true;
-
-            upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            upPointer.SetActive(false);
-            leftPointer.SetActive(false);
-            rightPointer.SetActive(false);
             _rigidbody2D.velocity = Vector2.zero;
         }
-
-        private void Start()
-        {
+        private void Start() {
             _playerManager.Players.Add(this.gameObject);
             listID = _playerManager.Players.Count;
-            _spriteRenderer.color = _playerManager.Players.Count switch
-            {
+            _spriteRenderer.color = _playerManager.Players.Count switch {
                 1 => color1,
                 2 => color2,
                 3 => color3,
                 4 => color4,
                 _ => _spriteRenderer.color
             };
+            upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
+            leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
+            rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
         }
-
         private void Update() {
-            transform.Translate(new Vector3(_movementInput.x, 0, 0) * speed * Time.deltaTime) ;
-            transform.localScale = _movementInput.x switch {
+            transform.Translate(new Vector3(movementInput.x, 0, 0) * speed * Time.deltaTime) ;
+            transform.localScale = movementInput.x switch {
                 < 0 => new Vector3(-1, 1, 1),
                 > 0 => new Vector3(1, 1, 1),
                 _ => transform.localScale
             };
             if (health <= 0) {
-                Dies += 1;
+                deaths += 1;
                 Respawn();
             }
             upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
@@ -97,47 +70,7 @@ namespace Vincent.Scripts.Archer
             rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
             rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
         }
-
-        public void OnMove(InputAction.CallbackContext ctx)
-        {
-            if (playerInput)
-            {
-                _movementInput = ctx.ReadValue<Vector2>();
-            }
-        }
-
-        // Left Joystick -> Keyboard A and D
-        public void OnJump(InputAction.CallbackContext ctx) {
-            if (ctx.performed && playerInput) Jump();
-        }
-        // A button / X button -> Keyboard Space
-        public void OnDash(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canDash && playerInput) {
-                switch (_movementInput.x) {
-                    case > 0 when dashPower < 0:
-                    case < 0 when dashPower > 0:
-                        dashPower = -dashPower;
-                        break;
-                }
-                StartCoroutine(Dash());
-            }
-        }
-        // Right trigger (RT, R2) -> Keyboard E
-        public void OnAttack(InputAction.CallbackContext ctx) {
-            if (ctx.performed && _canAttack && playerInput) {
-                StartCoroutine(Attack());
-            }
-        }
-
-        private void Jump() {
-            if (_jumpCount > 1) return;
-            //jumpForce = 650;
-            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
-            Vector2 jumpVec = new Vector2(0, jumpForce);
-            _rigidbody2D.AddForce(jumpVec, ForceMode2D.Impulse);
-            _jumpCount += 1;
-            _jumpParticle.Play();
-        }
+        
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("UpOutZone")) {
                 upPointer.SetActive(true);
@@ -148,8 +81,8 @@ namespace Vincent.Scripts.Archer
             if (other.CompareTag("RightOutZone")) {
                 rightPointer.SetActive(true);
             }
-            if (!other.CompareTag("Ground") || !_groundCollider) return;
-            //_isGrounded = true;
+            if (!other.CompareTag("Ground") || !groundCollider) return;
+            _isGrounded = true;
             _jumpCount = 0;
         }
         private void OnTriggerExit2D(Collider2D other) {
@@ -162,8 +95,8 @@ namespace Vincent.Scripts.Archer
             if (other.CompareTag("RightOutZone")) {
                 rightPointer.SetActive(false);
             }
-            if (!other.CompareTag("Ground") || !_groundCollider) return;
-            //_isGrounded = false;
+            if (!other.CompareTag("Ground") || !groundCollider) return;
+            _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
@@ -173,13 +106,47 @@ namespace Vincent.Scripts.Archer
                 health = 0;
             }
         }
-
+        
+        public void OnMove(InputAction.CallbackContext ctx) {
+            if (playerInput) {
+                movementInput = ctx.ReadValue<Vector2>();
+            }
+        }
+        public void OnJump(InputAction.CallbackContext ctx) {
+            if (ctx.performed && playerInput) Jump();
+        }
+        public void OnDash(InputAction.CallbackContext ctx)
+        {
+            if (ctx.performed && _canDash && playerInput) {
+                switch (movementInput.x) {
+                    case > 0 when dashPower < 0:
+                    case < 0 when dashPower > 0:
+                        dashPower = -dashPower;
+                        break;
+                }
+                StartCoroutine(Dash());
+            }
+        }
+        public void OnAttack(InputAction.CallbackContext ctx) {
+            if (ctx.performed && _canAttack && playerInput) {
+                StartCoroutine(Attack());
+            }
+        }
+        
         private void Respawn() {
             transform.position = new Vector3(0, 15, 0);
             health = 150;
         }
+        private void Jump() {
+            if (_jumpCount > 1) return;
+            //jumpForce = 650;
+            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
+            Vector2 jumpVec = new Vector2(0, jumpPower);
+            _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
+            _jumpCount += 1;
+        }
         
-        //Coroutine Dash
+        //Couroutine Dash
         private IEnumerator Dash() {
             _canDash = false;
             _isDashing = true;
@@ -195,6 +162,7 @@ namespace Vincent.Scripts.Archer
             yield return new WaitForSeconds(_dashingCooldown);
             _canDash = true;
         }
+        
         //Coroutine Attack
         private IEnumerator Attack() {
             _canAttack = false;
@@ -205,11 +173,11 @@ namespace Vincent.Scripts.Archer
             if (transform.localScale.x < 0) arrowTransform.localScale = new Vector3(-1, 1, 1);
             float directionX = Mathf.Sign(transform.localScale.x);
             arrowRigidbody2D.velocity = new Vector2(directionX * 35f, 0f);
-            yield return new WaitForSeconds(_attackCooldown);
+            yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
         }
-
-        //Couroutine Dégats
+        
+        //Couroutine Damage
         private IEnumerator TakeDamage() {
             _damageTake = true;
             health -= 10;
@@ -218,6 +186,4 @@ namespace Vincent.Scripts.Archer
         }
         
     }
-    
-    
 }

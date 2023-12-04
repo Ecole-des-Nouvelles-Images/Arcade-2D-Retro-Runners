@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vincent.Scripts.Player;
+using PlayerController = Vincent.Scripts.Player.PlayerController;
+using PlayerManager = Vincent_Prod.Scripts.PlayerManager;
 
 namespace Vincent.Scripts.Paladin {
     public class PaladinController : PlayerController {

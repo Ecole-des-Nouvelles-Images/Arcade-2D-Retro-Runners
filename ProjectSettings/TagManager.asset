@@ -12,6 +12,8 @@ TagManager:
   - UpOutZone
   - DeathZone
   - ShieldAttack
+  - Shield
+  - Spell
   layers:
   - Default
   - TransparentFX

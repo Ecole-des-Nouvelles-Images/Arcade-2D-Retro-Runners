@@ -5,27 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38a1bbdc-6556-442b-a743-9fdd0721712f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/FredManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/FredManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/MonoBehaviourSingleton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/MonoBehaviourSingleton.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/Metric.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/Metric.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/SceneSwitcher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/SceneSwitcher.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Vincent.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Vincent.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/ArcherController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/ArcherController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Knight/KnightController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Knight/KnightController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBars.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBars.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/prefab/Arrow.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/prefab/Arrow.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/prefab/Knight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent/prefab/Knight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/prefab/PlayerLifeBar.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/prefab/PlayerLifeBar.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +128,8 @@
       <workItem from="1701159374203" duration="22448000" />
       <workItem from="1701247131415" duration="38013000" />
       <workItem from="1701435348581" duration="5387000" />
+      <workItem from="1701680657300" duration="27000" />
+      <workItem from="1701685901493" duration="153000" />
     </task>
     <servers />
   </component>
