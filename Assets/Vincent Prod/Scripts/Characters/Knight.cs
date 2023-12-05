@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vincent_Prod.Scripts.Managers;
 
 namespace Vincent_Prod.Scripts.Characters
 {
@@ -42,6 +44,7 @@ namespace Vincent_Prod.Scripts.Characters
             deaths = 0;
             _canAttack = true;
             _rigidbody2D.velocity = Vector2.zero;
+            respawnPoint = GameObject.FindWithTag("Respawn");
         }
 
         private void Start() {
@@ -57,84 +60,55 @@ namespace Vincent_Prod.Scripts.Characters
             upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
             leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
             rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
+            upPointer.SetActive(false);
+            leftPointer.SetActive(false);
+            rightPointer.SetActive(false);
         }
 
-        private void Update()
-        {
+        private void Update() {
             transform.Translate(new Vector3(movementInput.x, 0, 0) * speed * Time.deltaTime) ;
-            //_rigidbody2D.AddForce(new Vector3(movementInput.x, 0, 0) * speed * Time.deltaTime, ForceMode2D.Impulse);
-            transform.localScale = movementInput.x switch
-            {
+            transform.localScale = movementInput.x switch {
                 < 0 => new Vector3(-1, 1, 1),
                 > 0 => new Vector3(1, 1, 1),
                 _ => transform.localScale
             };
-            if (health <= 0)
-            {
+            if (health <= 0) {
                 deaths += 1;
                 Respawn();
             }
-
-            upPointer.transform.position = new Vector3(transform.position.x, 13.8f, 0);
+            upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
             leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
-            leftPointer.transform.rotation = Quaternion.Euler(0, 0, 90);
+            leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
             rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
-            rightPointer.transform.rotation = Quaternion.Euler(0, 0, -90);
+            rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            if (_respawning) transform.position = respawnPoint.transform.position;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.CompareTag("UpOutZone"))
-            {
-                upPointer.SetActive(true);
-            }
-
-            if (other.CompareTag("LeftOutZone"))
-            {
-                leftPointer.SetActive(true);
-            }
-
-            if (other.CompareTag("RightOutZone"))
-            {
-                rightPointer.SetActive(true);
-            }
-
+        private void FixedUpdate() {
+            upPointer.SetActive(false);
+            leftPointer.SetActive(false);
+            rightPointer.SetActive(false);
+        }
+        private void OnTriggerEnter2D(Collider2D other) {
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
             _jumpCount = 0;
         }
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.CompareTag("UpOutZone"))
-            {
-                upPointer.SetActive(false);
-            }
-
-            if (other.CompareTag("LeftOutZone"))
-            {
-                leftPointer.SetActive(false);
-            }
-
-            if (other.CompareTag("RightOutZone"))
-            {
-                rightPointer.SetActive(false);
-            }
-
+        private void OnTriggerExit2D(Collider2D other) {
+            if (other.CompareTag("UpOutZone")) upPointer.SetActive(false);
+            if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(false);
+            if (other.CompareTag("RightOutZone")) rightPointer.SetActive(false);
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = false;
         }
-        private void OnTriggerStay2D(Collider2D other)
-        {
-            if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake)
-            {
+        private void OnTriggerStay2D(Collider2D other) {
+            if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 StartCoroutine(TakeDamage());
             }
-
-            if (other.CompareTag("DeathZone"))
-            {
-                health = 0;
-            }
-
+            if (other.CompareTag("UpOutZone")) upPointer.SetActive(true);
+            if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
+            if (other.CompareTag("RightOutZone")) rightPointer.SetActive(true);
+            if (other.CompareTag("DeathZone")) health = 0;
         }
         
         public void OnMove(InputAction.CallbackContext ctx) {
@@ -178,9 +152,22 @@ namespace Vincent_Prod.Scripts.Characters
         }
         
         
-        private void Respawn() {
-            transform.position = new Vector3(0, 15, 0);
+        private void Respawn()
+        {
+            _rigidbody2D.velocity = Vector2.zero;
+            transform.position = respawnPoint.transform.position;
             health = 150;
+            StartCoroutine(RespawnStun());
+        }
+        //Couroutine Respawn
+        private IEnumerator RespawnStun()
+        {
+            _respawning = true;
+            _damageTake = true;
+            yield return new WaitForSeconds(_respawnTime);
+            _rigidbody2D.velocity = Vector2.zero;
+            _respawning = false;
+            _damageTake = false;
         }
         private void Jump() {
             if (_jumpCount > 1) return;

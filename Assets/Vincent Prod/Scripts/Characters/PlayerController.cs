@@ -8,12 +8,14 @@ namespace Vincent_Prod.Scripts.Characters
         //Movements
         public PlayerInput playerInput;
         public float speed;
+        public float rbSpeed;
         public float jumpPower;
         public Vector2 movementInput;
         protected Rigidbody2D _rigidbody2D;
         public BoxCollider2D groundCollider;
         protected bool _isGrounded;
         protected int _jumpCount;
+        public bool iceArena;
         
         //Attack
         public float attackTime;
@@ -25,6 +27,9 @@ namespace Vincent_Prod.Scripts.Characters
         public int health;
         public int deaths;
         protected bool _damageTake;
+        protected GameObject respawnPoint;
+        protected float _respawnTime = 1f;
+        protected bool _respawning;
 
         //Pointers
         public GameObject upPointer;

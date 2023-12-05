@@ -334,9 +334,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 5951302805688631609}
   speed: 10
+  rbSpeed: 700
   jumpPower: 22.5
   movementInput: {x: 0, y: 0}
   groundCollider: {fileID: 3734117920186984419}
+  iceArena: 0
   attackTime: 0.4
   attackCooldown: 0.4
   health: 0

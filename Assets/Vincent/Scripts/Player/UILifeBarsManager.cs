@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Vincent.Scripts.Player;
-using PlayerManager = Vincent_Prod.Scripts.PlayerManager;
+using PlayerManager = Vincent_Prod.Scripts.Managers.PlayerManager;
 
 public class UILifeBarsManager : MonoBehaviour
     {

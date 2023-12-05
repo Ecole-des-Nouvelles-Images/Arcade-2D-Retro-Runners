@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Vincent.Scripts.Player;
 using PlayerController = Vincent.Scripts.Player.PlayerController;
-using PlayerManager = Vincent_Prod.Scripts.PlayerManager;
+using PlayerManager = Vincent_Prod.Scripts.Managers.PlayerManager;
 
 namespace Vincent.Scripts.Paladin {
     public class PaladinController : PlayerController {
