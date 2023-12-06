@@ -69,7 +69,14 @@ namespace Vincent_Prod.Scripts.Characters
         }
 
         private void Update() {
-            transform.Translate(new Vector3(movementInput.x, 0, 0) * speed * Time.deltaTime) ;
+            switch (iceArena) {
+                case false:
+                    if(_canMove) transform.Translate(new Vector3(movementInput.x, 0, 0) * speed * Time.deltaTime) ;
+                    break;
+                case true:
+                    if(_canMove) _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
+                    break;
+            }
             transform.localScale = movementInput.x switch {
                 < 0 => new Vector3(-1, 1, 1),
                 > 0 => new Vector3(1, 1, 1),
@@ -107,6 +114,9 @@ namespace Vincent_Prod.Scripts.Characters
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 StartCoroutine(TakeDamage());
+            }
+            if (other.CompareTag("Spell") && !_damageTake) {
+                StartCoroutine(TakeSpellDamage());
             }
             if (other.CompareTag("UpOutZone")) upPointer.SetActive(true);
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
@@ -226,6 +236,13 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator TakeDamage() {
             _damageTake = true;
             health -= 10;
+            yield return new WaitForSeconds(_iFrame);
+            _damageTake = false;
+        }
+        private IEnumerator TakeSpellDamage()
+        {
+            _damageTake = true;
+            health -= 2;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }
