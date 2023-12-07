@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2457699848861396549}
   m_Layer: 0
   m_Name: PlayerKnight
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 1398177439131383474}
   m_Layer: 3
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -836,6 +836,7 @@ MonoBehaviour:
   jumpPower: 11
   movementInput: {x: 0, y: 0}
   groundCollider: {fileID: 2968058386565812956}
+  _jumpCount: 0
   iceArena: 0
   attackTime: 0.4
   attackCooldown: 0.4

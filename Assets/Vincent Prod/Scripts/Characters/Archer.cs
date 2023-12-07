@@ -1,8 +1,9 @@
-using System;
 using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
+using Vincent_Prod.Scripts.Arenas.Wind_Arena;
 using Vincent_Prod.Scripts.Managers;
 
 namespace Vincent_Prod.Scripts.Characters
@@ -19,6 +20,7 @@ namespace Vincent_Prod.Scripts.Characters
 
         //Attack
         public GameObject arrowPrefab;
+        private float _arrowDirection;
 
         //UI
         public Sprite portrait;
@@ -74,11 +76,31 @@ namespace Vincent_Prod.Scripts.Characters
                 deaths += 1;
                 Respawn();
             }
-            upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
-            leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
-            leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
-            rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
-            rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            if (FindObjectOfType<WindManager>()) {
+                upPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                upPointer.transform.localPosition = new Vector3(transform.position.x, 7.65f,0);
+            }
+            else {
+                upPointer.transform.position = new Vector3(transform.position.x, 7.65f,0);
+            }
+            if (FindObjectOfType<WindManager>()) {
+                leftPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                leftPointer.transform.localPosition = new Vector3(-14.25f, transform.position.y, 0);
+                leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            }
+            else {
+                leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
+                leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            }
+            if (FindObjectOfType<WindManager>()) {
+                rightPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                rightPointer.transform.localPosition = new Vector3(14.25f, transform.position.y, 0);
+                rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            }
+            else {
+                rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
+                rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            }
             if (_respawning) transform.position = respawnPoint.transform.position;
         }
 
@@ -101,7 +123,13 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
-                StartCoroutine(TakeDamage());
+                if (other.CompareTag("Arrow")) {
+                    if (other.GetComponent<Arrow>().parentPlayer == this.gameObject) return;
+                    StartCoroutine(TakeSpellDamage());
+                }
+                else {
+                    StartCoroutine(TakeDamage());
+                }
             }
             if (other.CompareTag("Spell") && !_damageTake) {
                 StartCoroutine(TakeSpellDamage());
@@ -110,6 +138,7 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(true);
             if (other.CompareTag("DeathZone")) health = 0;
+            if (other.CompareTag("Ground")) _jumpCount = 0;
         }
         
         public void OnMove(InputAction.CallbackContext ctx) {
@@ -134,6 +163,7 @@ namespace Vincent_Prod.Scripts.Characters
         }
         public void OnAttack(InputAction.CallbackContext ctx) {
             if (ctx.performed && _canAttack && playerInput) {
+                _arrowDirection = movementInput.y;
                 StartCoroutine(Attack());
             }
         }
@@ -155,10 +185,10 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void Jump() {
             if (_jumpCount > 1) return;
-            //jumpForce = 650;
-            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
             Vector2 jumpVec = new Vector2(0, jumpPower);
-            _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
+            Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
+            if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
+            else _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
             _jumpCount += 1;
         }
         
@@ -186,9 +216,17 @@ namespace Vincent_Prod.Scripts.Characters
             Rigidbody2D arrowRigidbody2D = arrow.GetComponent<Rigidbody2D>();
             arrow.GetComponent<Arrow>().parentPlayer = this.gameObject;
             Transform arrowTransform = arrow.GetComponent<Transform>();
-            if (transform.localScale.x < 0) arrowTransform.localScale = new Vector3(-1, 1, 1);
+            //if (transform.localScale.x < 0) arrowTransform.localScale = new Vector3(-1, 1, 1);
+            if (transform.localScale.x < 0) arrowTransform.localScale = transform.localScale;
             float directionX = Mathf.Sign(transform.localScale.x);
-            arrowRigidbody2D.velocity = new Vector2(directionX * 35f, 0f);
+            if (_arrowDirection != 0) {
+                arrowRigidbody2D.velocity = new Vector2((directionX * 25f) / 2, _arrowDirection * 20f);
+                if(_arrowDirection > 0)arrowRigidbody2D.gravityScale = 1.25f;
+                if(_arrowDirection < 0)arrowRigidbody2D.gravityScale = 0.005f;
+            }
+            else {
+                arrowRigidbody2D.velocity = new Vector2(directionX * 25f, 0);
+            }
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
         }

@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 6228894940201899337}
   m_Layer: 0
   m_Name: PlayerMage
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -603,6 +603,7 @@ MonoBehaviour:
   jumpPower: 11
   movementInput: {x: 0, y: 0}
   groundCollider: {fileID: 9189277765392031731}
+  _jumpCount: 0
   iceArena: 0
   attackTime: 0
   attackCooldown: 3

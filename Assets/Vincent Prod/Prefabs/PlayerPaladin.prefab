@@ -338,6 +338,7 @@ MonoBehaviour:
   jumpPower: 22.5
   movementInput: {x: 0, y: 0}
   groundCollider: {fileID: 3734117920186984419}
+  _jumpCount: 0
   iceArena: 0
   attackTime: 0.4
   attackCooldown: 0.4
@@ -864,7 +865,7 @@ GameObject:
   - component: {fileID: 6604694290110068275}
   m_Layer: 0
   m_Name: PlayerPaladin
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

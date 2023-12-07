@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
+using Vincent_Prod.Scripts.Arenas.Wind_Arena;
 using Vincent_Prod.Scripts.Managers;
 
 namespace Vincent_Prod.Scripts.Characters
@@ -86,11 +87,31 @@ namespace Vincent_Prod.Scripts.Characters
                 deaths += 1;
                 Respawn();
             }
-            upPointer.transform.position = new Vector3(transform.position.x, 13.8f,0);
-            leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
-            leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
-            rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
-            rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            if (FindObjectOfType<WindManager>()) {
+                upPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                upPointer.transform.localPosition = new Vector3(transform.position.x, 7.65f,0);
+            }
+            else {
+                upPointer.transform.position = new Vector3(transform.position.x, 7.65f,0);
+            }
+            if (FindObjectOfType<WindManager>()) {
+                leftPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                leftPointer.transform.localPosition = new Vector3(-14.25f, transform.position.y, 0);
+                leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            }
+            else {
+                leftPointer.transform.position = new Vector3(-14.25f, transform.position.y, 0);
+                leftPointer.transform.rotation = Quaternion.Euler(0,0,90);
+            }
+            if (FindObjectOfType<WindManager>()) {
+                rightPointer.transform.parent = FindObjectOfType<WindManager>().transform;
+                rightPointer.transform.localPosition = new Vector3(14.25f, transform.position.y, 0);
+                rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            }
+            else {
+                rightPointer.transform.position = new Vector3(14.25f, transform.position.y, 0);
+                rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
+            }
             if (_respawning) transform.position = respawnPoint.transform.position;
         }
 
@@ -122,6 +143,7 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(true);
             if (other.CompareTag("DeathZone")) health = 0;
+            if (other.CompareTag("Ground")) _jumpCount = 0;
         }
         
         public void OnMove(InputAction.CallbackContext ctx) {
@@ -177,10 +199,10 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void Jump() {
             if (_jumpCount > 1) return;
-            //jumpForce = 650;
-            //Vector2 jumpVec = new Vector2(0, jumpForce * Time.deltaTime);
             Vector2 jumpVec = new Vector2(0, jumpPower);
-            _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
+            Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
+            if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
+            else _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
             _jumpCount += 1;
         }
         

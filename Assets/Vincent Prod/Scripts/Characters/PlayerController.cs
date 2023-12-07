@@ -14,7 +14,7 @@ namespace Vincent_Prod.Scripts.Characters
         protected Rigidbody2D _rigidbody2D;
         public BoxCollider2D groundCollider;
         protected bool _isGrounded;
-        protected int _jumpCount;
+        public int _jumpCount;
         public bool iceArena;
         
         //Attack

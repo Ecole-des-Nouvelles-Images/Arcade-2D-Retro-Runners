@@ -1,5 +1,7 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
 using Vincent_Prod.Scripts.Arenas.Ice_Arena;
 
 namespace Vincent_Prod.Scripts.Characters
@@ -13,6 +15,11 @@ namespace Vincent_Prod.Scripts.Characters
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
         }
+
+        private void Start() {
+            transform.rotation = parentPlayer.transform.rotation;
+        }
+
         private void Update() {
             Timer += Time.deltaTime;
             if (Timer >= 5) {
