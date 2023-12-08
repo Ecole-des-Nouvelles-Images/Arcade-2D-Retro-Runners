@@ -58,7 +58,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             yield return new WaitForSeconds(0.1f);
             foreach (var player in _playerManager.Players) {
                 float playerGravityScale = player.GetComponent<Rigidbody2D>().gravityScale;
-                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 5, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 7.5f, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(0.1f);
                 player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -71,7 +71,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             yield return new WaitForSeconds(0.1f);
             foreach (var player in _playerManager.Players) {
                 float playerGravityScale = player.GetComponent<Rigidbody2D>().gravityScale;
-                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 5, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 7.5f, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(0.1f);
                 player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.transform.localRotation = Quaternion.Euler(0, 0, 180);
@@ -85,7 +85,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             GravityRight = true;
             foreach (var player in _playerManager.Players) {
                 float playerGravityScale = player.GetComponent<Rigidbody2D>().gravityScale;
-                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 5, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 7.5f, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(0.1f);
                 player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.transform.localRotation = Quaternion.Euler(0, 0, 90);
@@ -99,7 +99,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             GravityLeft = true;
             foreach (var player in _playerManager.Players) {
                 float playerGravityScale = player.GetComponent<Rigidbody2D>().gravityScale;
-                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 5, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * 7.5f, ForceMode2D.Impulse);
                 yield return new WaitForSeconds(0.1f);
                 player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 player.transform.localRotation = Quaternion.Euler(0, 0, -90);

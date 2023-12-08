@@ -121,6 +121,9 @@ namespace Vincent_Prod.Scripts.Characters
             rightPointer.SetActive(false);
         }
         private void OnTriggerEnter2D(Collider2D other) {
+            if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                StartCoroutine(TakeBigDamage());
+            }
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
             _jumpCount = 0;
@@ -157,14 +160,32 @@ namespace Vincent_Prod.Scripts.Characters
         }
         public void OnGuard(InputAction.CallbackContext ctx)
         {
-            switch (ctx.performed)
+            if (ctx.started) // Événement de début du maintien de la touche
             {
-                case true when _canGuard && movementInput.y > 0.5f && playerInput:
-                    StartCoroutine(GuardUp());
-                    break;
-                case true when _canGuard && playerInput:
-                    StartCoroutine(Guard());
-                    break;
+                if (_canGuard && playerInput)
+                {
+                    if (movementInput.y > 0.5f)
+                    {
+                        StartCoroutine(GuardUp());
+                    }
+                    else
+                    {
+                        _canGuard = false;
+                        _isGuarding = true;
+                        _canMove = false;
+                        guardBox.SetActive(true);
+                    }
+                }
+            }
+            else if (ctx.canceled) // Événement de fin du maintien de la touche
+            {
+                if (!_canGuard && playerInput)
+                {
+                    guardBox.SetActive(false);
+                    _isGuarding = false;
+                    _canMove = true;
+                    _canGuard = true;
+                }
             }
         }
         public void OnAttack(InputAction.CallbackContext ctx)
@@ -206,19 +227,7 @@ namespace Vincent_Prod.Scripts.Characters
             _jumpCount += 1;
         }
         
-        //Couroutines Guard
-        private IEnumerator Guard() {
-            _canGuard = false;
-            _isGuarding = true;
-            _canMove = false;
-            guardBox.SetActive(true);
-            yield return new WaitForSeconds(_guardTime);
-            guardBox.SetActive(false);
-            _isGuarding= false;
-            _canMove = true;
-            yield return new WaitForSeconds(_guardCooldown);
-            _canGuard = true;
-        }
+        
         private IEnumerator GuardUp() {
             _canGuard = false;
             _isGuarding = true;
@@ -267,6 +276,15 @@ namespace Vincent_Prod.Scripts.Characters
             health -= 2;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
+        }
+        private IEnumerator TakeBigDamage()
+        {
+            Debug.Log(health);
+            _damageTake = true;
+            health -= 20;
+            yield return new WaitForSeconds(_iFrame);
+            _damageTake = false;
+            Debug.Log(health);
         }
     }
 }

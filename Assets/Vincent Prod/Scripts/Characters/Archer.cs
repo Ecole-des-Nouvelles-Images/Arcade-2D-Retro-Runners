@@ -110,6 +110,9 @@ namespace Vincent_Prod.Scripts.Characters
             rightPointer.SetActive(false);
         }
         private void OnTriggerEnter2D(Collider2D other) {
+            if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                StartCoroutine(TakeBigDamage());
+            }
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
             _jumpCount = 0;
@@ -245,6 +248,12 @@ namespace Vincent_Prod.Scripts.Characters
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }
-        
+        private IEnumerator TakeBigDamage()
+        {
+            _damageTake = true;
+            health -= 20;
+            yield return new WaitForSeconds(_iFrame);
+            _damageTake = false;
+        }
     }
 }
