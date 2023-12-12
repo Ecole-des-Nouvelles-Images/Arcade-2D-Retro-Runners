@@ -19,6 +19,10 @@ namespace Vincent_Prod.Scripts.Characters
         private float _guardCooldown = 8f;
         public GameObject guardBox;
         
+        //Movement
+        private bool _isFloating;
+        public ParticleSystem hoverParticles;
+        
         //Attack
         public GameObject spellPrefab;
         
@@ -34,12 +38,15 @@ namespace Vincent_Prod.Scripts.Characters
 
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _rigidbody2D.gravityScale = 1;
             _jumpCount = 2;
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _playerManager = FindObjectOfType<PlayerManager>();
             health = 140;
             deaths = 0;
             _canAttack = true;
+            _isFloating = false;
+            hoverParticles.Stop();
             guardBox.SetActive(false);
             _rigidbody2D.velocity = Vector2.zero;
             respawnPoint = GameObject.FindWithTag("Respawn");
@@ -60,6 +67,9 @@ namespace Vincent_Prod.Scripts.Characters
             upPointer.SetActive(false);
             leftPointer.SetActive(false);
             rightPointer.SetActive(false);
+            _rigidbody2D.gravityScale = 1;
+            _isFloating = false;
+            hoverParticles.Stop();
         }
         private void Update() {
             switch (iceArena) {
@@ -77,6 +87,9 @@ namespace Vincent_Prod.Scripts.Characters
             };
             if (health <= 0) {
                 deaths += 1;
+                _rigidbody2D.gravityScale = 1;
+                _isFloating = false;
+                hoverParticles.Stop();
                 Respawn();
             }
             if (FindObjectOfType<WindManager>()) {
@@ -114,11 +127,16 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
             _jumpCount = 0;
+            _isFloating = false;
+            hoverParticles.Stop();
+            _rigidbody2D.gravityScale = 1;
         }
         private void OnTriggerExit2D(Collider2D other) {
             if (other.CompareTag("UpOutZone")) upPointer.SetActive(false);
@@ -129,8 +147,11 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeDamage());
             }
+            
             if (other.CompareTag("Spell") && !_damageTake) {
                 if (other.GetComponent<Spell>().parentPlayer == this.gameObject) return;
                 StartCoroutine(TakeSpellDamage());
@@ -180,6 +201,21 @@ namespace Vincent_Prod.Scripts.Characters
         }
         
         private void Jump() {
+            switch (_jumpCount)
+            {
+                case > 1 when !_isFloating:
+                    _rigidbody2D.velocity = Vector2.zero;
+                    _rigidbody2D.gravityScale = 0.15f;
+                    _isFloating = true;
+                    hoverParticles.Play();
+                    break;
+                case > 1 when _isFloating:
+                    _rigidbody2D.velocity = Vector2.zero;
+                    _rigidbody2D.gravityScale = 1;
+                    _isFloating = false;
+                    hoverParticles.Stop();
+                    break;
+            }
             if (_jumpCount > 1) return;
             Vector2 jumpVec = new Vector2(0, jumpPower);
             Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
@@ -213,22 +249,28 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator TakeDamage() {
             
             _damageTake = true;
-            health -= 10;
+            if (_isGuarding) health -= 5; 
+            else health -= 10;
+            _rigidbody2D.gravityScale = 1;
+            hoverParticles.Stop();
+            _isFloating = false;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
+            
         }
         private IEnumerator TakeSpellDamage()
-        {
-            Debug.Log("taking damade");
+        { 
             _damageTake = true;
-            health -= 2;
+            if (_isGuarding) health -= 1; 
+            else health -= 2;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }
         private IEnumerator TakeBigDamage()
         {
             _damageTake = true;
-            health -= 20;
+            if (_isGuarding) health -= 10; 
+            else health -= 20;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }

@@ -30,6 +30,9 @@ namespace Vincent_Prod.Scripts.Characters
         protected GameObject respawnPoint;
         protected float _respawnTime = 1f;
         protected bool _respawning;
+        protected float _attackExplusionForce = 5f;
+        protected float _bigAttackExplusionForce = 8f;
+        
 
         //Pointers
         public GameObject upPointer;

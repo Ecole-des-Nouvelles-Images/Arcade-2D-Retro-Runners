@@ -111,6 +111,8 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
@@ -128,12 +130,11 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 if (other.CompareTag("Arrow")) {
                     if (other.GetComponent<Arrow>().parentPlayer == this.gameObject) return;
-                    StartCoroutine(TakeSpellDamage());
                 }
-                else {
-                    StartCoroutine(TakeDamage());
-                }
-            }
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
+                StartCoroutine(TakeDamage());
+            } 
             if (other.CompareTag("Spell") && !_damageTake) {
                 StartCoroutine(TakeSpellDamage());
             }

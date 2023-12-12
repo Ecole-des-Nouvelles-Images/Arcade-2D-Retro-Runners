@@ -21,6 +21,7 @@ namespace Vincent_Prod.Scripts.Characters
         public GameObject attackBox;
         public GameObject upAttackBox;
         public GameObject downAttackBox;
+        private bool _downAttack;
 
         //UI
         public Sprite portrait;
@@ -44,6 +45,7 @@ namespace Vincent_Prod.Scripts.Characters
             health = 150;
             deaths = 0;
             _canAttack = true;
+            _downAttack = false;
             _rigidbody2D.velocity = Vector2.zero;
             respawnPoint = GameObject.FindWithTag("Respawn");
         }
@@ -120,8 +122,11 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
             }
+            
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
             _jumpCount = 0;
@@ -135,12 +140,17 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeDamage());
             }
             if (other.CompareTag("Spell") && !_damageTake) {
                 StartCoroutine(TakeSpellDamage());
             }
-            
+            if (other.CompareTag("Player") && _downAttack && downAttackBox.GetComponent<BoxCollider2D>()) {
+                if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * new Vector2(jumpPower / 7,0), ForceMode2D.Impulse);
+                else _rigidbody2D.AddForce(transform.up * new Vector2(0,jumpPower / 7), ForceMode2D.Impulse);
+            }
             if (other.CompareTag("UpOutZone")) upPointer.SetActive(true);
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(true);
@@ -251,11 +261,13 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private IEnumerator AttackDown() {
             _canAttack = false;
+            _downAttack = true;
             downAttackBox.SetActive(true);
             yield return new WaitForSeconds(attackTime);
             downAttackBox.SetActive(false);
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
+            _downAttack = false;
         }
         
         //Couroutine Damage

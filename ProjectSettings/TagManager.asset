@@ -16,6 +16,8 @@ TagManager:
   - Spell
   - FallingSword
   - BigAttack
+  - MagicShield
+  - GlobalLight
   layers:
   - Default
   - TransparentFX

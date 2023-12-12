@@ -78,11 +78,13 @@ namespace Vincent_Prod.Scripts.Characters
                     if(_canMove) _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
-            transform.localScale = movementInput.x switch {
-                < 0 => new Vector3(-1, 1, 1),
-                > 0 => new Vector3(1, 1, 1),
-                _ => transform.localScale
-            };
+            if (!_isGuarding) {
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1, 1, 1),
+                    > 0 => new Vector3(1, 1, 1),
+                    _ => transform.localScale
+                };
+            }
             if (health <= 0) {
                 deaths += 1;
                 Respawn();
@@ -122,6 +124,8 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
@@ -137,6 +141,8 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
+                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeDamage());
             }
             if (other.CompareTag("Spell") && !_damageTake) {
@@ -227,7 +233,6 @@ namespace Vincent_Prod.Scripts.Characters
             _jumpCount += 1;
         }
         
-        
         private IEnumerator GuardUp() {
             _canGuard = false;
             _isGuarding = true;
@@ -277,14 +282,11 @@ namespace Vincent_Prod.Scripts.Characters
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }
-        private IEnumerator TakeBigDamage()
-        {
-            Debug.Log(health);
+        private IEnumerator TakeBigDamage() {
             _damageTake = true;
             health -= 20;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
-            Debug.Log(health);
         }
     }
 }

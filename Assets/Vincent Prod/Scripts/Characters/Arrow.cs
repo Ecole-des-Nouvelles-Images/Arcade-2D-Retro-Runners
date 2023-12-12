@@ -4,11 +4,13 @@ using UnityEngine;
 namespace Vincent_Prod.Scripts.Characters {
     public class Arrow : MonoBehaviour {
         public GameObject parentPlayer;
+        private Rigidbody2D _rigidbody2D;
         public Vector3 parentScale;
         
 
         private void Start()
         {
+            _rigidbody2D = GetComponent<Rigidbody2D>();
             parentScale = parentPlayer.transform.localScale;
         }
 
@@ -29,7 +31,12 @@ namespace Vincent_Prod.Scripts.Characters {
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("Shield")) {
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                _rigidbody2D.velocity = Vector2.zero;
+            }
+            if (other.CompareTag("MagicShield"))
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, -transform.localScale.y, 1);
+                _rigidbody2D.velocity = new Vector2(-_rigidbody2D.velocity.x / 1.5f, -_rigidbody2D.velocity.y / 1.5f);
             }
         }
     }
