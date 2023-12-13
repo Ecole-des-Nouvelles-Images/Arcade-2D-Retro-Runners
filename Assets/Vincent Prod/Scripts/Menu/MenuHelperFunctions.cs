@@ -84,7 +84,7 @@ namespace Vincent_Prod.Scripts.Menu
                 remainingTime--;
             }
 
-            LoadScene("Arena");
+            LoadScene("Test Arena");
         }
 
         public void OnCancel()

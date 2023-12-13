@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Vincent Prod/Scenes/Bordel/Menu.unity
+    path: Assets/Vincent Prod/Scenes/Menu/Menu.unity
     guid: 7cb1876898cfa6242996bbfdcad642cd
   - enabled: 1
-    path: Assets/Vincent Prod/Scenes/Bordel/CharacterSelection.unity
+    path: Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity
     guid: ddafd4ef56e3a86489c719d9c311ac43
+  - enabled: 1
+    path: Assets/Vincent Prod/Scenes/Test Arena.unity
+    guid: a7f410c27d3ec9c4fa66d08716249556
   m_configObjects: {}
