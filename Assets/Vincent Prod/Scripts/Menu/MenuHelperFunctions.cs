@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.UI;
@@ -11,6 +12,8 @@ namespace Vincent_Prod.Scripts.Menu
     {
         public static bool[] playersReady = new bool[4]{ false, false, false, false };
         public static bool[] playersJoined = new bool[4] { false, false, false, false };
+
+        public List<Scene> Arenas = new List<Scene>();
 
         public UnityEvent OnOpenMenu;
 
@@ -84,7 +87,11 @@ namespace Vincent_Prod.Scripts.Menu
                 remainingTime--;
             }
 
-            LoadScene("Test Arena");
+            int _randomArenaChoice = Random.Range(0, 4);
+            if (_randomArenaChoice == 0) LoadScene("Gravity Arena");
+            else if (_randomArenaChoice == 1) LoadScene("Wind Arena");
+            else if (_randomArenaChoice == 2) LoadScene("Falling Arena");
+            else if (_randomArenaChoice == 3) LoadScene("Ice Arena");
         }
 
         public void OnCancel()

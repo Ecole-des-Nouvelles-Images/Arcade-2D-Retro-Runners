@@ -400,7 +400,20 @@ MonoBehaviour:
   m_Group: {fileID: 1950638561}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerTwoPaladin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &119272722
 RectTransform:
@@ -487,7 +500,20 @@ MonoBehaviour:
   m_Group: {fileID: 1950638561}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerTwoArcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &121989337
 RectTransform:
@@ -932,7 +958,20 @@ MonoBehaviour:
   m_Group: {fileID: 395529318}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerThreeMage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &369050752
 RectTransform:
@@ -1380,7 +1419,20 @@ MonoBehaviour:
   m_Group: {fileID: 1025146487}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerFourArcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &468906473
 RectTransform:
@@ -2232,7 +2284,20 @@ MonoBehaviour:
   m_Group: {fileID: 260643681}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerOneMage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &612953003
 GameObject:
@@ -2372,7 +2437,20 @@ MonoBehaviour:
   m_Group: {fileID: 1025146487}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerFourMage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &620977072
 RectTransform:
@@ -3301,7 +3379,20 @@ MonoBehaviour:
   m_Group: {fileID: 1025146487}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerFourPaladin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &797975505
 RectTransform:
@@ -3410,7 +3501,20 @@ MonoBehaviour:
   m_Group: {fileID: 260643681}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerOneArcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &845965308
 GameObject:
@@ -3550,7 +3654,20 @@ MonoBehaviour:
   m_Group: {fileID: 395529318}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerThreeKnight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!224 &899041705
 RectTransform:
@@ -3713,7 +3830,20 @@ MonoBehaviour:
   m_Group: {fileID: 1025146487}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerFourKnight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!224 &916102574
 RectTransform:
@@ -3800,7 +3930,20 @@ MonoBehaviour:
   m_Group: {fileID: 260643681}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerOneKnight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!224 &922125451
 RectTransform:
@@ -5350,7 +5493,20 @@ MonoBehaviour:
   m_Group: {fileID: 395529318}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerThreeArcher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &1453335917
 RectTransform:
@@ -6211,7 +6367,20 @@ MonoBehaviour:
   m_Group: {fileID: 1950638561}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerTwoMage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &1567481859
 RectTransform:
@@ -6547,6 +6716,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623423299}
   m_CullTransparentMesh: 1
+--- !u!1 &1623756310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1623756312}
+  - component: {fileID: 1623756311}
+  m_Layer: 0
+  m_Name: SelectedCharactersManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1623756311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623756310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d625491944f883458af3851dab9942f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefabs:
+  - {fileID: 904148261608821248, guid: e4903207bb697ce4dbbef40dd0e63965, type: 3}
+  - {fileID: 1492693115661726543, guid: c9d76dec94953fa4c8fc427e1daa81de, type: 3}
+  - {fileID: 5421056083200402632, guid: b303dc74b3749fa47b4371d6c4d6f95b, type: 3}
+  - {fileID: 4950435623140747331, guid: 63baa2d5f1af17743b353773c871ccb9, type: 3}
+  playerOneCharacter: 0
+  playerTwoCharacter: 0
+  playerThreeCharacter: 0
+  playerFourCharacter: 0
+--- !u!4 &1623756312
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623756310}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1665094988
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +7140,20 @@ MonoBehaviour:
   m_Group: {fileID: 395529318}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerThreePaladin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &1731848091
 RectTransform:
@@ -7623,7 +7858,20 @@ MonoBehaviour:
   m_Group: {fileID: 260643681}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerOnePaladin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!224 &1892377394
 RectTransform:
@@ -7917,7 +8165,20 @@ MonoBehaviour:
   m_Group: {fileID: 1950638561}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1623756311}
+        m_TargetAssemblyTypeName: Vincent_Prod.Scripts.Managers.PlayerDataHandler,
+          Assembly-CSharp
+        m_MethodName: PlayerTwoKnight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!224 &1982779530
 RectTransform:
@@ -11650,3 +11911,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 481848082}
   - {fileID: 7094670999823699038}
+  - {fileID: 1623756312}

@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
 using Vincent_Prod.Scripts.Arenas.Wind_Arena;
 using Vincent_Prod.Scripts.Managers;
@@ -28,6 +30,8 @@ namespace Vincent_Prod.Scripts.Characters
 
         //Visuel
         private SpriteRenderer _spriteRenderer;
+        public Animator animator;
+        public Light2D light2D;
         
         //Manager
         private PlayerManager _playerManager;
@@ -53,15 +57,13 @@ namespace Vincent_Prod.Scripts.Characters
         private void Start() {
             _playerManager.Players.Add(this.gameObject);
             listID = _playerManager.Players.Count;
-            foreach (SpriteRenderer sprite in outlineSprites) {
-                sprite.color = _playerManager.Players.Count switch {
-                    1 => color1,
-                    2 => color2,
-                    3 => color3,
-                    4 => color4,
-                    _ => _spriteRenderer.color
-                };
-            }
+            light2D.color = _playerManager.Players.Count switch {
+                1 => color1,
+                2 => color2,
+                3 => color3,
+                4 => color4,
+                _ => _spriteRenderer.color
+            };
             upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
             leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
             rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
@@ -79,6 +81,10 @@ namespace Vincent_Prod.Scripts.Characters
                     _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
+            animator.SetFloat("VeloY", _rigidbody2D.velocity.y);
+            if (movementInput.x != 0) animator.SetBool("Walk", true);
+            else animator.SetBool("Walk", false);
+            
             transform.localScale = movementInput.x switch {
                 < 0 => new Vector3(-1, 1, 1),
                 > 0 => new Vector3(1, 1, 1),
@@ -124,12 +130,14 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
-                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                Vector2 expulsionDirection = (transform.position - other.transform.parent.position).normalized;
                 _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
             }
             
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Grounded", true);
+            animator.SetBool("Jump", false);
             _isGrounded = true;
             _jumpCount = 0;
         }
@@ -138,11 +146,12 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(false);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(false);
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Grounded", false);
             _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
-                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                Vector2 expulsionDirection = (transform.position - other.transform.parent.position).normalized;
                 _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeDamage());
             }
@@ -220,8 +229,10 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void Jump() {
             if (_jumpCount > 1) return;
+            animator.SetBool("Jump", false);
             Vector2 jumpVec = new Vector2(0, jumpPower);
             Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
+            animator.SetBool("Jump", true);
             if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
             else _rigidbody2D.AddForce(transform.up * jumpVec, ForceMode2D.Impulse);
             _jumpCount += 1;
@@ -231,11 +242,13 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator Dash() {
             _canDash = false;
             _isDashing = true;
+            animator.SetBool("Dash", true);
             float originalGravity = _rigidbody2D.gravityScale;
             _rigidbody2D.gravityScale = 0f;
             _rigidbody2D.velocity = new Vector2(dashPower, _rigidbody2D.velocity.y);
             _trail.emitting = true;
             yield return new WaitForSeconds(_dashingTime);
+            animator.SetBool("Dash", false);
             _rigidbody2D.gravityScale = originalGravity;
             _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
             _trail.emitting = false;
@@ -247,26 +260,32 @@ namespace Vincent_Prod.Scripts.Characters
         //Couroutines Attack
         private IEnumerator Attack() {
             _canAttack = false;
+            animator.SetBool("Attack", true);
             attackBox.SetActive(true);
             yield return new WaitForSeconds(attackTime);
             attackBox.SetActive(false);
+            animator.SetBool("Attack", false);
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
         }
         private IEnumerator AttackUp() {
             _canAttack = false;
+            animator.SetBool("AttackUp", true);
             upAttackBox.SetActive(true);
             yield return new WaitForSeconds(attackTime);
             upAttackBox.SetActive(false);
+            animator.SetBool("AttackUp", false);
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
         }
         private IEnumerator AttackDown() {
             _canAttack = false;
             _downAttack = true;
+            animator.SetBool("AttackDown", true);
             downAttackBox.SetActive(true);
             yield return new WaitForSeconds(attackTime);
             downAttackBox.SetActive(false);
+            animator.SetBool("AttackDown", false);
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
             _downAttack = false;
@@ -275,16 +294,20 @@ namespace Vincent_Prod.Scripts.Characters
         //Couroutine Damage
         private IEnumerator TakeDamage() {
             _damageTake = true;
+            animator.SetBool("Damage",true);
             health -= 10;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
+            animator.SetBool("Damage",false);
         }
         private IEnumerator TakeSpellDamage()
         {
             _damageTake = true;
+            animator.SetBool("Damage",true);
             health -= 2;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
+            animator.SetBool("Damage",false);
         }
         private IEnumerator TakeBigDamage()
         {

@@ -41,7 +41,6 @@ namespace Vincent_Prod.Scripts.Characters
         public GameObject rightPointer;
         
         //Color;
-        public List<SpriteRenderer> outlineSprites = new List<SpriteRenderer>();
         public Color color1 = Color.blue;
         public Color color2 = Color.red;
         public Color color3 = Color.green;
