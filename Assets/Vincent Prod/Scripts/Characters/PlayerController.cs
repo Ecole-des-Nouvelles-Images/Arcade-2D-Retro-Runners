@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 namespace Vincent_Prod.Scripts.Characters
 {
@@ -41,6 +41,7 @@ namespace Vincent_Prod.Scripts.Characters
         public GameObject rightPointer;
         
         //Color;
+        public Light2D light2D;
         public Color color1 = Color.blue;
         public Color color2 = Color.red;
         public Color color3 = Color.green;

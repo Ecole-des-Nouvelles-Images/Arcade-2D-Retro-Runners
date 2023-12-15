@@ -54,16 +54,16 @@ namespace Vincent_Prod.Scripts.Characters
         private void Start() {
             _playerManager.Players.Add(this.gameObject);
             listID = _playerManager.Players.Count;
-            _spriteRenderer.color = _playerManager.Players.Count switch {
+            light2D.color = _playerManager.Players.Count switch {
                 1 => color1,
                 2 => color2,
                 3 => color3,
                 4 => color4,
                 _ => _spriteRenderer.color
             };
-            upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
+            upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
+            leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
+            rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             upPointer.SetActive(false);
             leftPointer.SetActive(false);
             rightPointer.SetActive(false);

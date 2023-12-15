@@ -31,7 +31,7 @@ namespace Vincent_Prod.Scripts.Characters
         //Visuel
         private SpriteRenderer _spriteRenderer;
         public Animator animator;
-        public Light2D light2D;
+        
         
         //Manager
         private PlayerManager _playerManager;
@@ -64,9 +64,9 @@ namespace Vincent_Prod.Scripts.Characters
                 4 => color4,
                 _ => _spriteRenderer.color
             };
-            upPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            leftPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
-            rightPointer.GetComponent<SpriteRenderer>().color = _spriteRenderer.color;
+            upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
+            leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
+            rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             upPointer.SetActive(false);
             leftPointer.SetActive(false);
             rightPointer.SetActive(false);

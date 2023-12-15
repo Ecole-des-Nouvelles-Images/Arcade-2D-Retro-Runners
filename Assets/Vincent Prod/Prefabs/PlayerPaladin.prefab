@@ -348,6 +348,7 @@ MonoBehaviour:
   upPointer: {fileID: 3828693056255189449}
   leftPointer: {fileID: 1975511422071755134}
   rightPointer: {fileID: 2875871653292824750}
+  light2D: {fileID: 4139655534507512837}
   color1: {r: 0, g: 0, b: 1, a: 1}
   color2: {r: 1, g: 0, b: 0, a: 1}
   color3: {r: 0, g: 1, b: 0, a: 1}
@@ -356,7 +357,7 @@ MonoBehaviour:
   upGuardBox: {fileID: 796897193078547319}
   attackBox: {fileID: 6950166164749158186}
   upAttackBox: {fileID: 5796749081933437349}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 4d3e585ce98896f428f525716c834d4d, type: 3}
   listID: 0
 --- !u!114 &5951302805688631609
 MonoBehaviour:
@@ -450,12 +451,44 @@ MonoBehaviour:
     m_ActionName: Gameplay/Attack[/XInputControllerWindows1/buttonWest,/XInputControllerWindows/buttonWest,/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: a2519abd-0c88-4d2b-91b8-5d687e23eb85
-    m_ActionName: Menu/Validate[/XInputControllerWindows1/buttonSouth,/XInputControllerWindows/buttonSouth]
+    m_ActionId: 465e4345-6e59-4b46-be55-2c7f3a383ca8
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows1/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows1/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows1/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows1/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows1/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows1/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows1/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows1/rightStick/right,/XInputControllerWindows/dpad,/XInputControllerWindows1/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 57e8036b-12b0-40a6-9d10-fe1052180c8f
-    m_ActionName: Menu/Cancel[/XInputControllerWindows1/buttonEast,/XInputControllerWindows/buttonEast]
+    m_ActionId: d3c2b753-cf32-4670-943a-3c16f3177ac9
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth,/XInputControllerWindows1/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5c967730-2709-4196-a6de-580e526ef4f4
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a08a08f5-2afc-471d-8c96-681fbfe46552
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8d71be9d-b700-4c25-a695-1c015ef149d4
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc0d56fd-638f-4bf0-83aa-16adf52ee11d
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d62edf40-ce58-4b84-907c-bcfdcc171be3
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c42044e9-f13f-4265-a605-8d6d32ea5268
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77a30514-843e-4bab-94c7-8bc65d14d801
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 66a8ecf0-847f-4382-93fc-d75170f5e1c7
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -830,7 +863,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000001fbfd5a9
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1389,7 +1422,7 @@ Transform:
   m_GameObject: {fileID: 9071297425925795070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1433,11 +1466,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1445609697
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: c6c4386dc5814c841977cab54408fbcd,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: d934311d5232bd14e98f88f709ae38d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

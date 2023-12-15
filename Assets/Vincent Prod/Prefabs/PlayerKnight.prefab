@@ -3193,7 +3193,7 @@ MonoBehaviour:
   attackBox: {fileID: 1279627547279051683}
   upAttackBox: {fileID: 4308317032355082140}
   downAttackBox: {fileID: 1412339749261788181}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: c14c05a041f7e6942983f996a61afe10, type: 3}
   animator: {fileID: 3631223067402781865}
   light2D: {fileID: 138234422712526421}
   listID: 0
