@@ -10,7 +10,7 @@ namespace Vincent_Prod.Scripts.Characters {
         private int _listID;
         private PlayerController _myPlayer;
         public TextMeshProUGUI lifeText;
-        public TextMeshProUGUI diesText;
+        public TextMeshProUGUI killsText;
         public Image panelImage;
         public Image portraitImage;
         private void Awake() {
@@ -37,19 +37,19 @@ namespace Vincent_Prod.Scripts.Characters {
         private void FixedUpdate() {
             if (_myPlayer.GetComponent<Knight>()) {
                 lifeText.text = _myPlayer.GetComponent<Knight>().health.ToString();
-                diesText.text = _myPlayer.GetComponent<Knight>().deaths.ToString();
+                killsText.text = _myPlayer.GetComponent<Knight>().kills.ToString();
             }
             else if (_myPlayer.GetComponent<Archer>()) {
                 lifeText.text = _myPlayer.GetComponent<Archer>().health.ToString();
-                diesText.text = _myPlayer.GetComponent<Archer>().deaths.ToString();
+                killsText.text = _myPlayer.GetComponent<Archer>().kills.ToString();
             }
             else if (_myPlayer.GetComponent<Paladin>()) {
                 lifeText.text = _myPlayer.GetComponent<Paladin>().health.ToString();
-                diesText.text = _myPlayer.GetComponent<Paladin>().deaths.ToString();
+                killsText.text = _myPlayer.GetComponent<Paladin>().kills.ToString();
             }
             else if (_myPlayer.GetComponent<Mage>()) {
                 lifeText.text = _myPlayer.GetComponent<Mage>().health.ToString();
-                diesText.text = _myPlayer.GetComponent<Mage>().deaths.ToString();
+                killsText.text = _myPlayer.GetComponent<Mage>().kills.ToString();
             }
         }
     }

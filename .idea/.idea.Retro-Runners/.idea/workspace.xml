@@ -6,27 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="38a1bbdc-6556-442b-a743-9fdd0721712f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/GameManager.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/GameManager.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/InGameGestion.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/InGameGestion.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArrow.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerLifeBarNew 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerLifeBarNew 1.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/SpawnPoints.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/SpawnPoints.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Test Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Test Arena.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Sprites/Falling Arena/VFX/Falling_Arena_Parralax2 Light.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Sprites/Falling Arena/VFX/Falling_Arena_Parralax2 Light.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBars.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBars.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBarsManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBarsManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBars.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBars.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Sprites/Characters/Archer/arrow.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Sprites/Characters/Archer/arrow.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +41,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Wind Arena/WindManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBars.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBarsManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UiResultPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/GameModeHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/RandomEventManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/UiResultScreenManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/LightEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/ProtoArènes/Gravité/GravityManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/ArcherController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -62,8 +61,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Paladin/PaladinController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Player/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBars.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Player/UILifeBarsManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/camilia/SpriteSwapperPaladin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Editor/Internal/AdvancedDropdown/AdvancedDropdownGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/InputManager.cs" root0="SKIP_HIGHLIGHTING" />
@@ -103,7 +100,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Users/v.meneroud/Desktop/RetroRunnersBuildTest30 - Menu\Retro Runners - Base Project.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Users/v.meneroud/Desktop/RetroRunnersBuildTest 31 - 3\Retro Runners - Base Project.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\Users\v.meneroud\Desktop\RetroRunnersBuildTest3" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -172,7 +169,7 @@
       <workItem from="1702310248603" duration="9426000" />
       <workItem from="1702458604520" duration="4353000" />
       <workItem from="1702544824958" duration="14223000" />
-      <workItem from="1702636527430" duration="6004000" />
+      <workItem from="1702636527430" duration="14021000" />
     </task>
     <servers />
   </component>
@@ -199,19 +196,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs</url>
-          <line>216</line>
-          <properties documentPath="D:\Local Rep\Retro-Runners\Assets\Vincent Prod\Scripts\Characters\Archer.cs" initialLine="225" containingFunctionPresentation="Method 'Attack'">
-            <startOffsets>
-              <option value="9294" />
-            </startOffsets>
-            <endOffsets>
-              <option value="9295" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

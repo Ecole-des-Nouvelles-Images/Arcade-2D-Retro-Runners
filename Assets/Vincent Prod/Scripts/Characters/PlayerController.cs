@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using Vincent_Prod.Scripts.Managers;
 
 namespace Vincent_Prod.Scripts.Characters
 {
@@ -27,6 +28,8 @@ namespace Vincent_Prod.Scripts.Characters
         protected float _iFrame = 0.2f;
         public int health;
         public int deaths;
+        public int kills;
+        protected PlayerController _lastPlayerHitMe;
         protected bool _damageTake;
         protected GameObject respawnPoint;
         protected float _respawnTime = 1f;

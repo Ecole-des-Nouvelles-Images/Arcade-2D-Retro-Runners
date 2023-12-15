@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity
     guid: 0d30af2681c10a442b40fcdfc5573926
+  - enabled: 1
+    path: Assets/Vincent Prod/Scenes/Menu/VictoryScreen.unity
+    guid: e0c1373855b0571458ebb5963e55e89b
   m_configObjects: {}

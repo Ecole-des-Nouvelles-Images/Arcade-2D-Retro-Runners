@@ -12,7 +12,17 @@ namespace Vincent_Prod.Scripts.Managers
         public int playerTwoCharacter;
         public int playerThreeCharacter;
         public int playerFourCharacter;
+
         
+
+        public int playerOneKills;
+        public int playerOneDeaths;
+        public int playerTwoKills;
+        public int playerTwoDeaths;
+        public int playerThreeKills;
+        public int playerThreeDeaths;
+        public int playerFourKills;
+        public int playerFourDeaths;
         private int _currentCharacterIndex;
         
         public void PlayerOneKnight() {

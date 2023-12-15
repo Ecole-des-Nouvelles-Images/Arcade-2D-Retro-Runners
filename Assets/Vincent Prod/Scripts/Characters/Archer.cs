@@ -102,6 +102,23 @@ namespace Vincent_Prod.Scripts.Characters
                 rightPointer.transform.rotation = Quaternion.Euler(0,0,-90);
             }
             if (_respawning) transform.position = respawnPoint.transform.position;
+            
+            if (listID == 0) {
+                PlayerDataHandler.Instance.playerOneKills = kills;
+                PlayerDataHandler.Instance.playerOneDeaths = deaths;
+            }
+            else if (listID == 1) {
+                PlayerDataHandler.Instance.playerTwoKills = kills;
+                PlayerDataHandler.Instance.playerTwoDeaths = deaths;
+            }
+            else if (listID == 2) {
+                PlayerDataHandler.Instance.playerThreeKills = kills;
+                PlayerDataHandler.Instance.playerThreeDeaths = deaths;
+            }
+            else if (listID == 3) {
+                PlayerDataHandler.Instance.playerFourKills = kills;
+                PlayerDataHandler.Instance.playerFourDeaths = deaths;
+            }
         }
 
         private void FixedUpdate() {
@@ -111,9 +128,11 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
-                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
+                Transform attackParent = other.transform.parent.parent;
+                Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
                 _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
                 StartCoroutine(TakeBigDamage());
+                _lastPlayerHitMe = other.GetComponentInParent<PlayerController>();
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
             _isGrounded = true;
@@ -130,13 +149,23 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 if (other.CompareTag("Arrow")) {
                     if (other.GetComponent<Arrow>().parentPlayer == this.gameObject) return;
+                    Transform attackParent = other.transform;
+                    Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
+                    _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
+                    StartCoroutine(TakeDamage());
+                    _lastPlayerHitMe = other.GetComponent<Arrow>().parentPlayer.GetComponent<Archer>();
                 }
-                Vector2 expulsionDirection = (transform.position - other.transform.position).normalized;
-                _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
-                StartCoroutine(TakeDamage());
-            } 
+                else {
+                    Transform attackParent = other.transform.parent.parent;
+                    Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
+                    _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
+                    StartCoroutine(TakeDamage());
+                    _lastPlayerHitMe = other.GetComponentInParent<PlayerController>();
+                }
+            }
             if (other.CompareTag("Spell") && !_damageTake) {
                 StartCoroutine(TakeSpellDamage());
+                _lastPlayerHitMe = other.GetComponentInParent<Spell>().parentPlayer.GetComponent<Mage>();
             }
             if (other.CompareTag("UpOutZone")) upPointer.SetActive(true);
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(true);
@@ -176,6 +205,7 @@ namespace Vincent_Prod.Scripts.Characters
             _rigidbody2D.velocity = Vector2.zero;
             transform.position = respawnPoint.transform.position;
             health = 150;
+            _lastPlayerHitMe.kills += 1;
             StartCoroutine(RespawnStun());
         }
         //Couroutine Respawn
