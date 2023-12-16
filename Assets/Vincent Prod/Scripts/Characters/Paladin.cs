@@ -116,15 +116,15 @@ namespace Vincent_Prod.Scripts.Characters
             }
             if (_respawning) transform.position = respawnPoint.transform.position;
             
-            if (listID == 0) {
+            if (listID == 1) {
                 PlayerDataHandler.Instance.playerOneKills = kills;
                 PlayerDataHandler.Instance.playerOneDeaths = deaths;
             }
-            else if (listID == 1) {
+            else if (listID == 2) {
                 PlayerDataHandler.Instance.playerTwoKills = kills;
                 PlayerDataHandler.Instance.playerTwoDeaths = deaths;
             }
-            else if (listID == 2) {
+            else if (listID == 3) {
                 PlayerDataHandler.Instance.playerThreeKills = kills;
                 PlayerDataHandler.Instance.playerThreeDeaths = deaths;
             }
@@ -243,8 +243,9 @@ namespace Vincent_Prod.Scripts.Characters
             _rigidbody2D.velocity = Vector2.zero;
             transform.position = respawnPoint.transform.position;
             health = 170;
-            _lastPlayerHitMe.kills += 1;
+            if(_lastPlayerHitMe)_lastPlayerHitMe.kills += 1;
             StartCoroutine(RespawnStun());
+            _lastPlayerHitMe = null;
         }
         //Couroutine Respawn
         private IEnumerator RespawnStun()

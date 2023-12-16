@@ -26,6 +26,7 @@ namespace Vincent_Prod.Scripts.Managers
             else
             {
                 Debug.Log("Time has run out !");
+                Physics2D.gravity= new Vector2(0,-25);
                 timerIsRunning = false;
                 SceneManager.LoadScene("VictoryScreen");
             }
