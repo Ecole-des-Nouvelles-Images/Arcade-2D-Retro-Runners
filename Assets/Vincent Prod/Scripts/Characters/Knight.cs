@@ -64,6 +64,9 @@ namespace Vincent_Prod.Scripts.Characters
                 4 => color4,
                 _ => _spriteRenderer.color
             };
+            if (GravityManager.GravityArena) {
+                transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            }
             upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
@@ -80,15 +83,25 @@ namespace Vincent_Prod.Scripts.Characters
                     _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
-            animator.SetFloat("VeloY", _rigidbody2D.velocity.y);
+            if (GravityManager.GravityUp) { animator.SetFloat("VeloY", _rigidbody2D.velocity.x); }
+            else { animator.SetFloat("VeloY", _rigidbody2D.velocity.y); }
             if (movementInput.x != 0) animator.SetBool("Walk", true);
             else animator.SetBool("Walk", false);
-            
-            transform.localScale = movementInput.x switch {
-                < 0 => new Vector3(-1, 1, 1),
-                > 0 => new Vector3(1, 1, 1),
-                _ => transform.localScale
-            };
+
+            if (GravityManager.GravityArena) { 
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1.25f, 1.25f, 1.25f),
+                    > 0 => new Vector3(1.25f, 1.25f, 1.25f),
+                    _ => transform.localScale
+                };
+            }
+            else {
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1, 1, 1),
+                    > 0 => new Vector3(1, 1, 1),
+                    _ => transform.localScale
+                };
+            }
             if (health <= 0) {
                 deaths += 1;
                 Respawn();
@@ -336,7 +349,7 @@ namespace Vincent_Prod.Scripts.Characters
         {
             _damageTake = true;
             animator.SetBool("Damage",true);
-            health -= 2;
+            health -= 10;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
             animator.SetBool("Damage",false);
@@ -344,8 +357,10 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator TakeBigDamage()
         {
             _damageTake = true;
+            animator.SetBool("Damage", true);
             health -= 20;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
         }
 

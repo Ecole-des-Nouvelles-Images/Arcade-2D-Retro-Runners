@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 2457699848861396549}
   m_Layer: 0
   m_Name: PlayerKnight
-  m_TagString: Untagged
+  m_TagString: PlayerHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

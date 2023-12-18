@@ -27,6 +27,7 @@ namespace Vincent_Prod.Scripts.Characters
 
         //Visuel
         private SpriteRenderer _spriteRenderer;
+        public Animator animator;
         
         //Manager
         private PlayerManager _playerManager;
@@ -54,6 +55,9 @@ namespace Vincent_Prod.Scripts.Characters
                 4 => color4,
                 _ => _spriteRenderer.color
             };
+            if (GravityManager.GravityArena) {
+                transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            }
             upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
@@ -67,11 +71,24 @@ namespace Vincent_Prod.Scripts.Characters
                     _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
-            transform.localScale = movementInput.x switch {
-                < 0 => new Vector3(-1, 1, 1),
-                > 0 => new Vector3(1, 1, 1),
-                _ => transform.localScale
-            };
+            if (movementInput.x != 0) { animator.SetBool("Walk", true); }
+            else { animator.SetBool("Walk", false); }
+            if (GravityManager.GravityUp) { animator.SetFloat("VeloY", _rigidbody2D.velocity.x); }
+            else { animator.SetFloat("VeloY", _rigidbody2D.velocity.y); }
+            if (GravityManager.GravityArena) { 
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1.25f, 1.25f, 1.25f),
+                    > 0 => new Vector3(1.25f, 1.25f, 1.25f),
+                    _ => transform.localScale
+                };
+            }
+            else {
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1, 1, 1),
+                    > 0 => new Vector3(1, 1, 1),
+                    _ => transform.localScale
+                };
+            }
             if (health <= 0) {
                 deaths += 1;
                 Respawn();
@@ -135,6 +152,8 @@ namespace Vincent_Prod.Scripts.Characters
                 _lastPlayerHitMe = other.GetComponentInParent<PlayerController>();
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Jump", false);
+            animator.SetBool("Grounded", true);
             _isGrounded = true;
             _jumpCount = 0;
         }
@@ -143,6 +162,7 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(false);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(false);
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Grounded", false);
             _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
@@ -220,6 +240,7 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void Jump() {
             if (_jumpCount > 1) return;
+            animator.SetBool("Jump", true);
             Vector2 jumpVec = new Vector2(0, jumpPower);
             Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
             if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
@@ -251,41 +272,115 @@ namespace Vincent_Prod.Scripts.Characters
             Rigidbody2D arrowRigidbody2D = arrow.GetComponent<Rigidbody2D>();
             arrow.GetComponent<Arrow>().parentPlayer = this.gameObject;
             Transform arrowTransform = arrow.GetComponent<Transform>();
-            //if (transform.localScale.x < 0) arrowTransform.localScale = new Vector3(-1, 1, 1);
             if (transform.localScale.x < 0) arrowTransform.localScale = transform.localScale;
             float directionX = Mathf.Sign(transform.localScale.x);
-            if (_arrowDirection != 0) {
-                arrowRigidbody2D.velocity = new Vector2((directionX * 25f) / 2, _arrowDirection * 20f);
-                if(_arrowDirection > 0)arrowRigidbody2D.gravityScale = 1.25f;
-                if(_arrowDirection < 0)arrowRigidbody2D.gravityScale = 0.005f;
+            if (!GravityManager.GravityLeft && !GravityManager.GravityRight && !GravityManager.GravityUp) {
+                if (_arrowDirection != 0 || _arrowDirection < -0.3f && _arrowDirection > 0) {
+                    arrowRigidbody2D.velocity = new Vector2((directionX * 25f) / 2, _arrowDirection * 20f);
+                    if (_arrowDirection > 0) {
+                        arrowRigidbody2D.gravityScale = 1.25f;
+                        animator.SetBool("AttackUp", true);
+                    }
+                    if (_arrowDirection < -0.3f) {
+                        arrowRigidbody2D.gravityScale = 0.005f;
+                        animator.SetBool("AttackDown", true);
+                    }
+                }
+                else {
+                    arrowRigidbody2D.velocity = new Vector2(directionX * 25f, 0);
+                    animator.SetBool("Attack", true);
+                }
             }
-            else {
-                arrowRigidbody2D.velocity = new Vector2(directionX * 25f, 0);
+            else if (GravityManager.GravityUp)
+            {
+                if (_arrowDirection != 0 || _arrowDirection < -0.3f && _arrowDirection > 0) {
+                    arrowRigidbody2D.velocity = new Vector2((-directionX * 25f) / 2, -_arrowDirection * 20f);
+                    if (_arrowDirection > 0) {
+                        arrowRigidbody2D.gravityScale = 1.25f;
+                        animator.SetBool("AttackUp", true);
+                    }
+                    if (_arrowDirection < -0.3f) {
+                        arrowRigidbody2D.gravityScale = 0.005f;
+                        animator.SetBool("AttackDown", true);
+                    }
+                }
+                else {
+                    arrowRigidbody2D.velocity = new Vector2(-directionX * 25f, 0);
+                    animator.SetBool("Attack", true);
+                }
+            }
+            else if (GravityManager.GravityRight) {
+                if (_arrowDirection != 0 || _arrowDirection < -0.3f && _arrowDirection > 0) {
+                    arrowRigidbody2D.velocity = new Vector2(-_arrowDirection * 20f,(directionX * 25f)/ 2);
+                    if (_arrowDirection > 0) {
+                        arrowRigidbody2D.gravityScale = 1.25f;
+                        animator.SetBool("AttackUp", true);
+                    }
+                    if (_arrowDirection < -0.3f) {
+                        arrowRigidbody2D.gravityScale = 0.005f;
+                        animator.SetBool("AttackDown", true);
+                    }
+                }
+                else {
+                    arrowRigidbody2D.velocity = new Vector2(0, (directionX * 25f));
+                    animator.SetBool("Attack", true);
+                }
+            }
+            else if (GravityManager.GravityLeft) {
+                if (_arrowDirection != 0 || _arrowDirection < -0.3f && _arrowDirection > 0) {
+                    arrowRigidbody2D.velocity = new Vector2(_arrowDirection * 20f,(directionX * 25f)/ 2);
+                    if (_arrowDirection > 0) {
+                        arrowRigidbody2D.gravityScale = 1.25f;
+                        animator.SetBool("AttackUp", true);
+                    }
+                    if (_arrowDirection < -0.3f) {
+                        arrowRigidbody2D.gravityScale = 0.005f;
+                        animator.SetBool("AttackDown", true);
+                    }
+                }
+                else {
+                    arrowRigidbody2D.velocity = new Vector2(0, (-directionX * 25f));
+                    animator.SetBool("Attack", true);
+                }
             }
             yield return new WaitForSeconds(attackCooldown);
             _canAttack = true;
+            animator.SetBool("AttackUp", false);
+            animator.SetBool("AttackDown", false);
+            animator.SetBool("Attack", false);
         }
         
         //Couroutine Damage
         private IEnumerator TakeDamage() {
             _damageTake = true;
             health -= 10;
+            animator.SetBool("Damage", true);
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
         }
         private IEnumerator TakeSpellDamage()
         {
             _damageTake = true;
-            health -= 2;
+            health -= 10;
+            animator.SetBool("Damage", true);
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
         }
         private IEnumerator TakeBigDamage()
         {
             _damageTake = true;
             health -= 20;
+            animator.SetBool("Damage", true);
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
+        }
+        
+        public void KillDone()
+        {
+            kills += 1;
         }
     }
 }

@@ -5091,7 +5091,7 @@ GameObject:
   - component: {fileID: 6228894940201899337}
   m_Layer: 0
   m_Name: PlayerMage
-  m_TagString: Untagged
+  m_TagString: PlayerHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5577,6 +5577,7 @@ MonoBehaviour:
   attackCooldown: 3
   health: 0
   deaths: 0
+  kills: 0
   upPointer: {fileID: 7760683627425932603}
   leftPointer: {fileID: 5064106897696836156}
   rightPointer: {fileID: 7865142681398919645}

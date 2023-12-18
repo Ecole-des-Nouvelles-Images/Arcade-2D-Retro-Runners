@@ -1,10 +1,12 @@
 using System;
 using UnityEngine;
+using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
 
 namespace Vincent_Prod.Scripts.Characters {
     public class Arrow : MonoBehaviour {
         public GameObject parentPlayer;
         private Rigidbody2D _rigidbody2D;
+        public SpriteRenderer arrowSprite;
         public Vector3 parentScale;
         
 
@@ -12,6 +14,12 @@ namespace Vincent_Prod.Scripts.Characters {
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             parentScale = parentPlayer.transform.localScale;
+            if (GravityManager.GravityUp || GravityManager.GravityLeft) {
+                arrowSprite.flipX = true;
+            }
+            else {
+                arrowSprite.flipX = false;
+            }
         }
 
         private void FixedUpdate() {

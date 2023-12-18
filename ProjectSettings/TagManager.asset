@@ -18,6 +18,7 @@ TagManager:
   - BigAttack
   - MagicShield
   - GlobalLight
+  - PlayerHandler
   layers:
   - Default
   - TransparentFX

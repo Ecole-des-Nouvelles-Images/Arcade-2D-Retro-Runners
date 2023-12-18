@@ -61,6 +61,9 @@ namespace Vincent_Prod.Scripts.Characters
                 4 => color4,
                 _ => _spriteRenderer.color
             };
+            if (GravityManager.GravityArena) {
+                transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            }
             upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
@@ -97,11 +100,20 @@ namespace Vincent_Prod.Scripts.Characters
                     _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
-            transform.localScale = movementInput.x switch {
-                < 0 => new Vector3(-1, 1, 1),
-                > 0 => new Vector3(1, 1, 1),
-                _ => transform.localScale
-            };
+            if (GravityManager.GravityArena) { 
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1.25f, 1.25f, 1.25f),
+                    > 0 => new Vector3(1.25f, 1.25f, 1.25f),
+                    _ => transform.localScale
+                };
+            }
+            else {
+                transform.localScale = movementInput.x switch {
+                    < 0 => new Vector3(-1, 1, 1),
+                    > 0 => new Vector3(1, 1, 1),
+                    _ => transform.localScale
+                };
+            }
             if (health <= 0) {
                 deaths += 1;
                 _rigidbody2D.gravityScale = 1;
@@ -293,8 +305,8 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator TakeSpellDamage()
         { 
             _damageTake = true;
-            if (_isGuarding) health -= 1; 
-            else health -= 2;
+            if (_isGuarding) health -= 5; 
+            else health -= 10;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
         }
@@ -305,6 +317,11 @@ namespace Vincent_Prod.Scripts.Characters
             else health -= 20;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
+        }
+        
+        public void KillDone()
+        {
+            kills += 1;
         }
     }
 }

@@ -15,7 +15,9 @@ namespace Vincent_Prod.Scripts.Characters
         //Guard
         private bool _canGuard = true;
         private bool _isGuarding;
-        private float _guardTime = 0.75f;
+        private bool _canGuardUp;
+        private bool _canGuardHor;
+        private float _guardTime = 1f;
         private float _guardCooldown = 1f;
         public GameObject guardBox;
         public GameObject upGuardBox;
@@ -28,13 +30,19 @@ namespace Vincent_Prod.Scripts.Characters
         public Sprite portrait;
 
         //Visuel
+        public Animator animator;
         private SpriteRenderer _spriteRenderer;
+        
         
         //Manager
         private PlayerManager _playerManager;
         public int listID;
 
-        private void Awake() {
+        private void Awake()
+        {
+            _canGuardHor = true;
+            _canGuardUp = true;
+            _canAttack = true;
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _jumpCount = 2;
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -61,6 +69,9 @@ namespace Vincent_Prod.Scripts.Characters
                 4 => color4,
                 _ => _spriteRenderer.color
             };
+            if (GravityManager.GravityArena) {
+                transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+            }
             upPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             leftPointer.GetComponent<SpriteRenderer>().color = light2D.color;
             rightPointer.GetComponent<SpriteRenderer>().color = light2D.color;
@@ -78,12 +89,25 @@ namespace Vincent_Prod.Scripts.Characters
                     if(_canMove) _rigidbody2D.AddForce(new Vector2(movementInput.x,0)* rbSpeed * Time.deltaTime);
                     break;
             }
+            if (movementInput.x != 0 && _canMove) { animator.SetBool("Walk", true); }
+            else { animator.SetBool("Walk", false); }
+            if (GravityManager.GravityUp) { animator.SetFloat("VeloY", _rigidbody2D.velocity.x); }
+            else { animator.SetFloat("VeloY", _rigidbody2D.velocity.y); }
             if (!_isGuarding) {
-                transform.localScale = movementInput.x switch {
-                    < 0 => new Vector3(-1, 1, 1),
-                    > 0 => new Vector3(1, 1, 1),
-                    _ => transform.localScale
-                };
+                if (GravityManager.GravityArena) { 
+                    transform.localScale = movementInput.x switch {
+                        < 0 => new Vector3(-1.25f, 1.25f, 1.25f),
+                        > 0 => new Vector3(1.25f, 1.25f, 1.25f),
+                        _ => transform.localScale
+                    };
+                }
+                else {
+                    transform.localScale = movementInput.x switch {
+                        < 0 => new Vector3(-1, 1, 1),
+                        > 0 => new Vector3(1, 1, 1),
+                        _ => transform.localScale
+                    };
+                }
             }
             if (health <= 0) {
                 deaths += 1;
@@ -141,6 +165,7 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void OnTriggerEnter2D(Collider2D other) {
             if (other.CompareTag("BigAttack") && !_damageTake || other.CompareTag("FallingSword")) {
+                if (_isGuarding) return ;
                 Transform attackParent = other.transform.parent.parent;
                 Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
                 _rigidbody2D.AddForce(expulsionDirection * _bigAttackExplusionForce, ForceMode2D.Impulse);
@@ -148,6 +173,8 @@ namespace Vincent_Prod.Scripts.Characters
                 _lastPlayerHitMe = other.GetComponentInParent<PlayerController>();
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Jump", false);
+            animator.SetBool("Grounded", true);
             _isGrounded = true;
             _jumpCount = 0;
         }
@@ -156,11 +183,13 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(false);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(false);
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Grounded", false);
             _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
             if (other.CompareTag("Attack") && !_damageTake || other.CompareTag("Arrow") && !_damageTake) {
                 if (other.CompareTag("Arrow")) {
+                    if (_isGuarding) return ;
                     Transform attackParent = other.transform;
                     Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
                     _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
@@ -168,6 +197,7 @@ namespace Vincent_Prod.Scripts.Characters
                     _lastPlayerHitMe = other.GetComponent<Arrow>().parentPlayer.GetComponent<Archer>();
                 }
                 else {
+                    if (_isGuarding) return ;
                     Transform attackParent = other.transform.parent.parent;
                     Vector2 expulsionDirection = (transform.position - attackParent.position).normalized;
                     _rigidbody2D.AddForce(expulsionDirection * _attackExplusionForce, ForceMode2D.Impulse);
@@ -201,15 +231,19 @@ namespace Vincent_Prod.Scripts.Characters
             {
                 if (_canGuard && playerInput)
                 {
-                    if (movementInput.y > 0.5f)
+                    if (movementInput.y > 0.5f && _canGuardUp)
                     {
                         StartCoroutine(GuardUp());
+                        _canAttack = false;
                     }
-                    else
+                    else if(_canGuardHor)
                     {
+                        _canGuardUp = false;
+                        _canAttack = false;
                         _canGuard = false;
                         _isGuarding = true;
                         _canMove = false;
+                        animator.SetBool("Blocking", true);
                         guardBox.SetActive(true);
                     }
                 }
@@ -218,7 +252,10 @@ namespace Vincent_Prod.Scripts.Characters
             {
                 if (!_canGuard && playerInput)
                 {
+                    _canGuardUp = true;
+                    _canAttack = true;
                     guardBox.SetActive(false);
+                    animator.SetBool("Blocking", false);
                     _isGuarding = false;
                     _canMove = true;
                     _canGuard = true;
@@ -259,6 +296,7 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private void Jump() {
             if (_jumpCount > 1) return;
+            animator.SetBool("Jump", true);
             Vector2 jumpVec = new Vector2(0, jumpPower);
             Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
             if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
@@ -266,12 +304,17 @@ namespace Vincent_Prod.Scripts.Characters
             _jumpCount += 1;
         }
         
-        private IEnumerator GuardUp() {
+        private IEnumerator GuardUp()
+        {
+            _canGuardHor = false;
             _canGuard = false;
             _isGuarding = true;
             _canMove = false;
+            animator.SetBool("BlockingUp", true);
             upGuardBox.SetActive(true);
             yield return new WaitForSeconds(_guardTime);
+            animator.SetBool("BlockingUp", false);
+            _canGuardHor = true;
             upGuardBox.SetActive(false);
             _isGuarding= false;
             _canMove = true;
@@ -281,6 +324,7 @@ namespace Vincent_Prod.Scripts.Characters
         
         //Couroutines Attack
         private IEnumerator Attack() {
+            animator.SetTrigger("Attack");
             _canAttack = false;
             _canMove = false;
             attackBox.SetActive(true);
@@ -288,9 +332,11 @@ namespace Vincent_Prod.Scripts.Characters
             _canMove = true;
             attackBox.SetActive(false);
             yield return new WaitForSeconds(attackCooldown);
+            
             _canAttack = true;
         }
         private IEnumerator AttackUp() {
+            animator.SetTrigger("AttackUp");
             _canAttack = false;
             _canMove = false;
             upAttackBox.SetActive(true);
@@ -302,24 +348,36 @@ namespace Vincent_Prod.Scripts.Characters
         }
         
         //Couroutine Damage
-        private IEnumerator TakeDamage() {
+        private IEnumerator TakeDamage()
+        {
+            animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 10;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
         }
         private IEnumerator TakeSpellDamage()
         {
             _damageTake = true;
-            health -= 2;
+            animator.SetBool("Damage", true);
+            health -= 10;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
         }
         private IEnumerator TakeBigDamage() {
+            animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 20;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false);
             _damageTake = false;
+        }
+        
+        public void KillDone()
+        {
+            kills += 1;
         }
     }
 }

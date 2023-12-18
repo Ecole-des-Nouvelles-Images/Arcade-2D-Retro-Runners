@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
 
 namespace Vincent_Prod.Scripts.Managers
 {
@@ -27,6 +28,7 @@ namespace Vincent_Prod.Scripts.Managers
             {
                 Debug.Log("Time has run out !");
                 Physics2D.gravity= new Vector2(0,-25);
+                GravityManager.GravityArena = false;
                 timerIsRunning = false;
                 SceneManager.LoadScene("VictoryScreen");
             }

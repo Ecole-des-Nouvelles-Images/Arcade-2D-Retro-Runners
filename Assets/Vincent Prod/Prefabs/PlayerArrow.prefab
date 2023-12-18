@@ -236,4 +236,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentPlayer: {fileID: 0}
+  arrowSprite: {fileID: 4825153816551990275}
   parentScale: {x: 0, y: 0, z: 0}
