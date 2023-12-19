@@ -349,7 +349,7 @@ namespace Vincent_Prod.Scripts.Characters
         {
             _damageTake = true;
             animator.SetBool("Damage",true);
-            health -= 10;
+            health -= 5;
             yield return new WaitForSeconds(_iFrame);
             _damageTake = false;
             animator.SetBool("Damage",false);

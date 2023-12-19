@@ -362,7 +362,7 @@ namespace Vincent_Prod.Scripts.Characters
         private IEnumerator TakeSpellDamage()
         {
             _damageTake = true;
-            health -= 10;
+            health -= 5;
             animator.SetBool("Damage", true);
             yield return new WaitForSeconds(_iFrame);
             animator.SetBool("Damage", false);

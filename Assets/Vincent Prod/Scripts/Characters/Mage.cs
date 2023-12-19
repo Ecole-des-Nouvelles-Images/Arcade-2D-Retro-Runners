@@ -31,6 +31,9 @@ namespace Vincent_Prod.Scripts.Characters
 
         //Visuel
         private SpriteRenderer _spriteRenderer;
+        public List<ParticleSystem> shieldParticles = new List<ParticleSystem>();
+        public Animator shieldAnimator;
+        public Animator animator;
         
         //Manager
         private PlayerManager _playerManager;
@@ -114,6 +117,9 @@ namespace Vincent_Prod.Scripts.Characters
                     _ => transform.localScale
                 };
             }
+            if(movementInput.x != 0) animator.SetBool("Walk", true);
+            else animator.SetBool("Walk", false);
+            animator.SetFloat("VeloY", _rigidbody2D.velocity.y);
             if (health <= 0) {
                 deaths += 1;
                 _rigidbody2D.gravityScale = 1;
@@ -163,6 +169,9 @@ namespace Vincent_Prod.Scripts.Characters
                 _lastPlayerHitMe = other.GetComponentInParent<PlayerController>();
             }
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Jump", false);
+            animator.SetBool("Grounded", true);
+            animator.SetBool("Hover", false);
             _isGrounded = true;
             _jumpCount = 0;
             _isFloating = false;
@@ -174,6 +183,7 @@ namespace Vincent_Prod.Scripts.Characters
             if (other.CompareTag("LeftOutZone")) leftPointer.SetActive(false);
             if (other.CompareTag("RightOutZone")) rightPointer.SetActive(false);
             if (!other.CompareTag("Ground") || !groundCollider) return;
+            animator.SetBool("Grounded", false);
             _isGrounded = false;
         }
         private void OnTriggerStay2D(Collider2D other) {
@@ -252,15 +262,18 @@ namespace Vincent_Prod.Scripts.Characters
                     _rigidbody2D.gravityScale = 0.15f;
                     _isFloating = true;
                     hoverParticles.Play();
+                    animator.SetBool("Hover", true);
                     break;
                 case > 1 when _isFloating:
                     _rigidbody2D.velocity = Vector2.zero;
                     _rigidbody2D.gravityScale = 1;
                     _isFloating = false;
                     hoverParticles.Stop();
+                    animator.SetBool("Hover", false);
                     break;
             }
             if (_jumpCount > 1) return;
+            animator.SetBool("Jump", true);
             Vector2 jumpVec = new Vector2(0, jumpPower);
             Vector2 jumpVecHoriz = new Vector2(jumpPower, 0);
             if (GravityManager.GravityLeft || GravityManager.GravityRight) _rigidbody2D.AddForce(transform.up * jumpVecHoriz, ForceMode2D.Impulse);
@@ -273,7 +286,13 @@ namespace Vincent_Prod.Scripts.Characters
             _canGuard = false;
             _isGuarding = true;
             guardBox.SetActive(true);
+            animator.SetTrigger("Shield");
+            shieldAnimator.SetTrigger("Visible");
+            foreach (var particle in shieldParticles) { particle.Play(); }
             yield return new WaitForSeconds(_guardTime);
+            shieldAnimator.SetTrigger("Invisible");
+            foreach (var particle in shieldParticles) { particle.Stop(); }
+            yield return new WaitForSeconds(0.35f);
             guardBox.SetActive(false);
             _isGuarding= false;
             yield return new WaitForSeconds(_guardCooldown);
@@ -283,6 +302,7 @@ namespace Vincent_Prod.Scripts.Characters
         //Coroutine Attack
         private IEnumerator Attack() {
             _canAttack = false;
+            animator.SetTrigger("Spell");
             GameObject lastSpell = Instantiate(spellPrefab, transform.position, quaternion.identity);
             lastSpell.GetComponent<Spell>().parentPlayer = this.gameObject;
             yield return new WaitForSeconds(attackCooldown);
@@ -291,7 +311,7 @@ namespace Vincent_Prod.Scripts.Characters
         
         //Couroutine Damage
         private IEnumerator TakeDamage() {
-            
+            animator.SetBool("Damage", true); 
             _damageTake = true;
             if (_isGuarding) health -= 5; 
             else health -= 10;
@@ -299,23 +319,28 @@ namespace Vincent_Prod.Scripts.Characters
             hoverParticles.Stop();
             _isFloating = false;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false); 
             _damageTake = false;
             
         }
         private IEnumerator TakeSpellDamage()
         { 
+            animator.SetBool("Damage", true); 
             _damageTake = true;
-            if (_isGuarding) health -= 5; 
-            else health -= 10;
+            if (_isGuarding) health -= 1; 
+            else health -= 5;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false); 
             _damageTake = false;
         }
         private IEnumerator TakeBigDamage()
         {
+            animator.SetBool("Damage", true); 
             _damageTake = true;
             if (_isGuarding) health -= 10; 
             else health -= 20;
             yield return new WaitForSeconds(_iFrame);
+            animator.SetBool("Damage", false); 
             _damageTake = false;
         }
         

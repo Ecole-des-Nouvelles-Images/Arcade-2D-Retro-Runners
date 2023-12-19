@@ -7,40 +7,19 @@
     <list default="true" id="38a1bbdc-6556-442b-a743-9fdd0721712f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArrow.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerSpell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerSpell.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/VictoryScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/VictoryScreen.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Gravity Arena/GravityManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Gravity Arena/GravityManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Arrow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Arrow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Spell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Spell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/New Anim2/DamageNew.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/New Anim2/DamageNew.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Attack.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Block Up.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Block Up.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Block.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Block.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Blocking Up.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Blocking Up.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Blocking.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Blocking.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Damage.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Damage.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpDown.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpDown.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpUp.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpUp.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/MidAir Pose.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/MidAir Pose.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Paladin.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Paladin.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Walk.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Walk.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +37,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Wind Arena/OWPlatform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Wind Arena/WindManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/PaladinShieldSwap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/SpellParticles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBars.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UILifeBarsManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/UiResultPanel.cs" root0="FORCE_HIGHLIGHTING" />
@@ -67,6 +47,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/RandomEventManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/UiResultScreenManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/LightEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Sprites/UI/Vitraux/Vritrailtransitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/ProtoArènes/Gravité/GravityManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/ArcherController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/Arrow.cs" root0="FORCE_HIGHLIGHTING" />
@@ -120,7 +101,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Users/v.meneroud/Desktop/RetroRunnersBuildTest 31 - 3\Retro Runners - Base Project.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../Users/v.meneroud/Desktop/RetroRunnersBuildTest 32\Retro Runners - Base Project.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="D:\Users\v.meneroud\Desktop\RetroRunnersBuildTest3" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -192,6 +173,8 @@
       <workItem from="1702636527430" duration="14021000" />
       <workItem from="1702719164245" duration="5562000" />
       <workItem from="1702888602897" duration="14274000" />
+      <workItem from="1702978203926" duration="4036000" />
+      <workItem from="1702991315632" duration="4948000" />
     </task>
     <servers />
   </component>
@@ -202,24 +185,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs</url>
-          <line>180</line>
-          <properties documentPath="D:\Local Rep\Retro-Runners\Assets\Vincent Prod\Scripts\Characters\Paladin.cs" initialLine="160" containingFunctionPresentation="Method 'OnTriggerExit2D'">
-            <startOffsets>
-              <option value="7560" />
-            </startOffsets>
-            <endOffsets>
-              <option value="7561" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

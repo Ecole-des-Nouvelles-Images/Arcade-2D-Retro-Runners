@@ -16,6 +16,7 @@ namespace Vincent_Prod.Scripts.Menu
         public List<Scene> Arenas = new List<Scene>();
 
         public UnityEvent OnOpenMenu;
+        
 
 
         //lobby variables
@@ -87,12 +88,12 @@ namespace Vincent_Prod.Scripts.Menu
                 remainingTime--;
             }
 
-            /*int _randomArenaChoice = Random.Range(0, 4);
+            int _randomArenaChoice = Random.Range(0, 4);
             if (_randomArenaChoice == 0) LoadScene("Gravity Arena");
             else if (_randomArenaChoice == 1) LoadScene("Wind Arena");
             else if (_randomArenaChoice == 2) LoadScene("Falling Arena");
-            else if (_randomArenaChoice == 3) LoadScene("Ice Arena");*/
-            LoadScene("Gravity Arena");
+            else if (_randomArenaChoice == 3) LoadScene("Ice Arena");
+            
         }
 
         public void OnCancel()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Vincent_Prod.Scripts.Menu;
 
 namespace Vincent_Prod.Scripts.Managers
@@ -99,7 +100,5 @@ namespace Vincent_Prod.Scripts.Managers
                 yield return new WaitForSeconds(0.01f);
             }
         }
-        
-        
     }
 }

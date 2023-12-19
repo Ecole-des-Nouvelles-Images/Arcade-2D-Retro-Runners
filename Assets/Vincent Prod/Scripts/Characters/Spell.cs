@@ -11,6 +11,8 @@ namespace Vincent_Prod.Scripts.Characters
         private float Timer;
         private Rigidbody2D _rigidbody2D;
         public GameObject parentPlayer;
+        public GameObject particlesPrefab;
+        private GameObject _myParticles;
         
         private void Awake() {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -18,11 +20,21 @@ namespace Vincent_Prod.Scripts.Characters
 
         private void Start() {
             transform.rotation = parentPlayer.transform.rotation;
+            _myParticles = Instantiate(particlesPrefab, transform.position, quaternion.identity);
+            _myParticles.transform.parent = null;
         }
 
         private void Update() {
             Timer += Time.deltaTime;
+            _myParticles.transform.position = transform.position;
+            _myParticles.transform.rotation = transform.rotation;
+            if (Timer >= 3) {
+                foreach (var particle in _myParticles.GetComponent<SpellParticles>().particleSystems) {
+                    particle.Stop();
+                }
+            }
             if (Timer >= 5) {
+                Destroy(_myParticles);
                 Destroy(this.gameObject);
             }
         }
