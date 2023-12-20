@@ -23050,7 +23050,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 1.21
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000001fbfd5a9
@@ -23817,7 +23817,7 @@ MonoBehaviour:
   playerInput: {fileID: 2773689779413777217}
   speed: 10
   rbSpeed: 750
-  jumpPower: 13
+  jumpPower: 11
   movementInput: {x: 0, y: 0}
   groundCollider: {fileID: 9189277765392031731}
   _jumpCount: 0

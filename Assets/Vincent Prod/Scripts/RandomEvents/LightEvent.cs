@@ -12,7 +12,7 @@ namespace Vincent_Prod.Scripts.RandomEvents {
         }
         public static void LightsOn() {
             Light2D[] allLights = FindObjectsOfType<Light2D>();
-            foreach (Light2D light2D in allLights) if (light2D.gameObject.CompareTag("GlobalLight")) light2D.intensity = 1f;
+            foreach (Light2D light2D in allLights) if (light2D.gameObject.CompareTag("GlobalLight")) light2D.intensity = 0.7f;
             lightsOff = false;
         }
     }

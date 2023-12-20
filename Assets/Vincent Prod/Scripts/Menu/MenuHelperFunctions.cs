@@ -88,12 +88,12 @@ namespace Vincent_Prod.Scripts.Menu
                 remainingTime--;
             }
 
-            int _randomArenaChoice = Random.Range(0, 4);
+            int _randomArenaChoice = Random.Range(0, 3);
             if (_randomArenaChoice == 0) LoadScene("Gravity Arena");
-            else if (_randomArenaChoice == 1) LoadScene("Wind Arena");
             else if (_randomArenaChoice == 2) LoadScene("Falling Arena");
-            else if (_randomArenaChoice == 3) LoadScene("Ice Arena");
-            
+            else if (_randomArenaChoice == 1) LoadScene("Ice Arena");
+            Destroy(FindObjectOfType<MenuMusic>().gameObject);
+            //else if (_randomArenaChoice == 3) LoadScene("Wind Arena");
         }
 
         public void OnCancel()
@@ -127,6 +127,7 @@ namespace Vincent_Prod.Scripts.Menu
             }
             else if(playerIndex == 1)
             {
+                Destroy(FindObjectOfType<MenuMusic>().gameObject);
                 LoadScene("Menu");
             }
         }

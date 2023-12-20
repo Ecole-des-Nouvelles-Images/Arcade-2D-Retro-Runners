@@ -19,6 +19,7 @@ TagManager:
   - MagicShield
   - GlobalLight
   - PlayerHandler
+  - MenuMusic
   layers:
   - Default
   - TransparentFX

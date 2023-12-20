@@ -6,20 +6,48 @@
   <component name="ChangeListManager">
     <list default="true" id="38a1bbdc-6556-442b-a743-9fdd0721712f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_1.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_2.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_3.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_3.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_4.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Battle_4.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Menu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/Menu.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/menu_autre.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Audio/menu_autre.mp3.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sacha/Font/Augusta SDF 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sacha/Font/Augusta SDF 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/InGameGestion.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/InGameGestion.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/MagicShield.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/MagicShield.controller.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerSpell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerSpell.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldDisable.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldDisable.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldInvisible.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldInvisible.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldSpawnMage.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldSpawnMage.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldVisible.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ShieldVisible.anim.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena/Global Volume Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena/Global Volume Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Wind Arena.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Spell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Spell.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/RandomEventManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/RandomEventManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/LightEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/LightEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Knight Animation/Knight.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpUp.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/JumpUp.anim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Paladin.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/camilia/Sprite/Paladin Animation/Paladin.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +75,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/RandomEventManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/UiResultScreenManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/LightEvent.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/SizeEvent.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent Prod/Sprites/UI/Vitraux/Vritrailtransitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/ProtoArènes/Gravité/GravityManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Vincent/Scripts/Archer/ArcherController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -66,6 +95,7 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/InputManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.9/Editor/Data/Graphs/SerializableTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -175,6 +205,8 @@
       <workItem from="1702888602897" duration="14274000" />
       <workItem from="1702978203926" duration="4036000" />
       <workItem from="1702991315632" duration="4948000" />
+      <workItem from="1703062999310" duration="7095000" />
+      <workItem from="1703089899007" duration="339000" />
     </task>
     <servers />
   </component>
