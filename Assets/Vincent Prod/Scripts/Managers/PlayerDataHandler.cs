@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,18 +14,25 @@ namespace Vincent_Prod.Scripts.Managers
         public int playerTwoCharacter;
         public int playerThreeCharacter;
         public int playerFourCharacter;
+
+        public Sprite playerOnePortrait;
+        public Sprite playerTwoPortrait;
+        public Sprite playerThreePortrait;
+        public Sprite playerFourPortrait;
         
-        public int playerOneKills;
-        public int playerOneDeaths;
-        public int playerTwoKills;
-        public int playerTwoDeaths;
-        public int playerThreeKills;
-        public int playerThreeDeaths;
-        public int playerFourKills;
-        public int playerFourDeaths;
+        public int playerOneKills = -1;
+        public int playerOneDeaths = -1;
+        public int playerTwoKills = -1;
+        public int playerTwoDeaths = -1;
+        public int playerThreeKills = -1;
+        public int playerThreeDeaths = -1;
+        public int playerFourKills = -1;
+        public int playerFourDeaths = -1;
         
         private int _currentCharacterIndex;
+
         
+
         public void PlayerOneKnight() {
             playerOneCharacter = 0;
         }

@@ -311,7 +311,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AttackUP
-  m_Speed: 1
+  m_Speed: 1.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3441843973869558108}
@@ -398,7 +398,7 @@ AnimatorStateTransition:
   m_ExitTime: 0.95
   m_HasExitTime: 1
   m_HasFixedDuration: 0
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &-2513552460288379865
@@ -630,7 +630,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.002
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -646,7 +646,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Attack
-  m_Speed: 1.2
+  m_Speed: 1.35
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6306831577946270964}
@@ -707,7 +707,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.002
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -732,7 +732,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.002
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -867,7 +867,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.002
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -1027,7 +1027,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.002
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -1076,10 +1076,10 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.95
+  m_ExitTime: 1
   m_HasExitTime: 1
   m_HasFixedDuration: 0
-  m_InterruptionSource: 0
+  m_InterruptionSource: 1
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &6585833976121163541

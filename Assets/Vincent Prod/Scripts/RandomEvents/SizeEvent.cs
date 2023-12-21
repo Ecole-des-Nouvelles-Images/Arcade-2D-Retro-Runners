@@ -31,16 +31,23 @@ namespace Vincent_Prod.Scripts.RandomEvents
         }
 
         private void ChangeDefaultSize() {
-            foreach (GameObject player in _playerManager.Players) { player.transform.localScale = _baseSize; }
+            foreach (GameObject player in _playerManager.Players) { player.transform.parent.localScale = _baseSize; }
             sizeChanged = false;
         }
         private void ChangeSizeUp() {
-            foreach (GameObject player in _playerManager.Players) { player.transform.localScale = _baseSize * 1.5f; }
+            foreach (GameObject player in _playerManager.Players) {
+                player.transform.parent.localScale = _baseSize * 1.5f;
+                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+            }
             sizeChanged = true;
         }
 
         private void ChangeSizeDown() {
-            foreach (GameObject player in _playerManager.Players) { player.transform.localScale = _baseSize * 0.5f; }
+            foreach (GameObject player in _playerManager.Players) {
+                player.transform.parent.localScale = _baseSize * 0.5f; 
+                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+            }
+            
             sizeChanged = true;
         }
     }

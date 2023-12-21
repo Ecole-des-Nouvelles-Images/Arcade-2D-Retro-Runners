@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Vincent_Prod.Scripts.Managers;
 
 namespace Vincent_Prod.Scripts.Menu
 {
@@ -128,6 +129,7 @@ namespace Vincent_Prod.Scripts.Menu
             else if(playerIndex == 1)
             {
                 Destroy(FindObjectOfType<MenuMusic>().gameObject);
+                Destroy(FindObjectOfType<PlayerDataHandler>().gameObject);
                 LoadScene("Menu");
             }
         }

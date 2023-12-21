@@ -37,7 +37,7 @@ namespace Vincent_Prod.Scripts.Managers
                     break;
             }
             if (_startTimer) { _Timer += Time.deltaTime; }
-            if (_Timer >= 3) { _startTimer = false; _eventChoosed = false; }
+            if (_Timer >= 10) { _startTimer = false; _eventChoosed = false; }
         }
 
         private void ChooseEvent() {

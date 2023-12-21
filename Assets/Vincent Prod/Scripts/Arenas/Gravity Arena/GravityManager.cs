@@ -20,6 +20,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
         public static bool GravityUp;
         public static bool GravityArena;
         private PlayerManager _playerManager;
+        public GameObject camera;
 
         private void Start()
         {
@@ -36,16 +37,14 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
         }
         private void Update() {
             _timer += Time.deltaTime;
-            if (_timer >= 27)
-            {
-                Physics2D.gravity = new Vector2(Physics2D.gravity.x / 3, Physics2D.gravity.y / 3);
-            }
             if (_timer >= 30) {
-                ChooseNewGravity();
+                camera.GetComponent<Animator>().SetTrigger("CameraShake");
+                if (GravityUp) { StartCoroutine("GravityToDown"); GravityUp = false; }
+                else { StartCoroutine(GravityToUp()); }
                 _timer = 0;
             }
         }
-        private void ChooseNewGravity() {
+        /*private void ChooseNewGravity() {
             _newGravityValue = Random.Range(0, 4);
             if (_newGravityValue == _currentGravityValue) {
                 ChooseNewGravity();
@@ -63,7 +62,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             if (_newGravityValue == 1) StartCoroutine(GravityToUp());
             if (_newGravityValue == 2) StartCoroutine(GravityToRight());
             if (_newGravityValue == 3) StartCoroutine(GravityToLeft());
-        }
+        }*/
         private IEnumerator GravityToDown() {
             yield return new WaitForSeconds(0.1f);
             foreach (var player in _playerManager.Players) {
@@ -91,7 +90,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             yield return new WaitForSeconds(0.1f);
             Physics2D.gravity= new Vector2(0,25);
         }
-        private IEnumerator GravityToRight() {
+        /*private IEnumerator GravityToRight() {
             yield return new WaitForSeconds(0.1f);
             GravityRight = true;
             foreach (var player in _playerManager.Players) {
@@ -118,7 +117,7 @@ namespace Vincent_Prod.Scripts.Arenas.Gravity_Arena
             }
             yield return new WaitForSeconds(0.1f);
             Physics2D.gravity= new Vector2(-25,0);
-        }
+        }*/
     }
 }
 

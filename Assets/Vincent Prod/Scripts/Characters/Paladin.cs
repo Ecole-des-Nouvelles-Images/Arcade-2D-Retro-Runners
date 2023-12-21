@@ -38,8 +38,9 @@ namespace Vincent_Prod.Scripts.Characters
         private PlayerManager _playerManager;
         public int listID;
 
-        private void Awake()
-        {
+        private void Awake() {
+            RespawnVFX.SetActive(false);
+            kills = 0;
             _canGuardHor = true;
             _canGuardUp = true;
             _canAttack = true;
@@ -78,6 +79,10 @@ namespace Vincent_Prod.Scripts.Characters
             upPointer.SetActive(false);
             leftPointer.SetActive(false);
             rightPointer.SetActive(false);
+            if (listID == 1) { PlayerDataHandler.Instance.playerOnePortrait = portrait; }
+            else if (listID == 2) { PlayerDataHandler.Instance.playerTwoPortrait = portrait; }
+            else if (listID == 3) { PlayerDataHandler.Instance.playerThreePortrait = portrait; }
+            else if (listID == 4) { PlayerDataHandler.Instance.playerFourPortrait = portrait; }
         }
 
         private void Update() {
@@ -152,7 +157,7 @@ namespace Vincent_Prod.Scripts.Characters
                 PlayerDataHandler.Instance.playerThreeKills = kills;
                 PlayerDataHandler.Instance.playerThreeDeaths = deaths;
             }
-            else if (listID == 3) {
+            else if (listID == 4) {
                 PlayerDataHandler.Instance.playerFourKills = kills;
                 PlayerDataHandler.Instance.playerFourDeaths = deaths;
             }
@@ -219,6 +224,7 @@ namespace Vincent_Prod.Scripts.Characters
         public void OnMove(InputAction.CallbackContext ctx) {
             if (playerInput) {
                 movementInput = ctx.ReadValue<Vector2>();
+                if (GravityManager.GravityUp) { movementInput.x = -movementInput.x; }
             }
         }
         public void OnJump(InputAction.CallbackContext ctx)
@@ -285,11 +291,12 @@ namespace Vincent_Prod.Scripts.Characters
             _lastPlayerHitMe = null;
         }
         //Couroutine Respawn
-        private IEnumerator RespawnStun()
-        {
+        private IEnumerator RespawnStun() {
+            RespawnVFX.SetActive(true);
             _respawning = true;
             _damageTake = true;
             yield return new WaitForSeconds(_respawnTime);
+            RespawnVFX.SetActive(false);
             _rigidbody2D.velocity = Vector2.zero;
             _respawning = false;
             _damageTake = false;
@@ -350,6 +357,7 @@ namespace Vincent_Prod.Scripts.Characters
         //Couroutine Damage
         private IEnumerator TakeDamage()
         {
+            ImpactVFX.Play();
             animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 10;
@@ -359,6 +367,7 @@ namespace Vincent_Prod.Scripts.Characters
         }
         private IEnumerator TakeSpellDamage()
         {
+            ImpactVFX.Play();
             _damageTake = true;
             animator.SetBool("Damage", true);
             health -= 5;
@@ -367,6 +376,7 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = false;
         }
         private IEnumerator TakeBigDamage() {
+            ImpactVFX.Play();
             animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 20;

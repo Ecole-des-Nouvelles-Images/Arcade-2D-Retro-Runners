@@ -32,11 +32,14 @@ namespace Vincent_Prod.Scripts.Characters
         protected PlayerController _lastPlayerHitMe;
         protected bool _damageTake;
         protected GameObject respawnPoint;
-        protected float _respawnTime = 1f;
+        protected float _respawnTime = 2f;
         protected bool _respawning;
         protected float _attackExplusionForce = 5f;
         protected float _bigAttackExplusionForce = 8f;
         
+        //Visuel
+        public GameObject RespawnVFX;
+        public ParticleSystem ImpactVFX;
 
         //Pointers
         public GameObject upPointer;
