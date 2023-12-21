@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38a1bbdc-6556-442b-a743-9fdd0721712f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Sacha/Font/Augusta SDF 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sacha/Font/Augusta SDF 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerArcher.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerKnight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerLifeBarNew 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerLifeBarNew 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerMage.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/PlayerPaladin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ResultPlayerPanel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Prefabs/ResultPlayerPanel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Falling Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Gravity Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Arenas/Ice Arena.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/CharacterSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/VictoryScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scenes/Menu/VictoryScreen.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Gravity Arena/GravityManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Arenas/Gravity Arena/GravityManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Archer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Knight.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Mage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Characters/Paladin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/PlayerDataHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/UiResultScreenManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Managers/UiResultScreenManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuHelperFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuMusic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/Menu/MenuMusic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Retro-Runners/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/SizeEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Vincent Prod/Scripts/RandomEvents/SizeEvent.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,27 +68,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vincent&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "vincent",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\v.meneroud\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\v.meneroud\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\v.meneroud\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Vincent\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Vincent\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\Vincent\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../../Users/v.meneroud/Desktop/RetroRunnersBuildFinal 1\Retro Runners - Base Project.exe" />
@@ -188,6 +168,7 @@
       <workItem from="1703062999310" duration="7095000" />
       <workItem from="1703089899007" duration="339000" />
       <workItem from="1703147601629" duration="6792000" />
+      <workItem from="1703182456911" duration="857000" />
     </task>
     <servers />
   </component>

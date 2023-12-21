@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Drawing;
 using UnityEngine;
 using Vincent_Prod.Scripts.Arenas.Gravity_Arena;
@@ -36,19 +37,27 @@ namespace Vincent_Prod.Scripts.RandomEvents
         }
         private void ChangeSizeUp() {
             foreach (GameObject player in _playerManager.Players) {
-                player.transform.parent.localScale = _baseSize * 1.5f;
-                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * new Vector2(0,12), ForceMode2D.Impulse);
+                StartCoroutine("SizeUp", player);
             }
             sizeChanged = true;
         }
 
         private void ChangeSizeDown() {
             foreach (GameObject player in _playerManager.Players) {
-                player.transform.parent.localScale = _baseSize * 0.5f; 
-                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
+                player.GetComponent<Rigidbody2D>().AddForce(transform.up * new Vector2(0,12), ForceMode2D.Impulse);
+                StartCoroutine("SizeDown", player);
             }
-            
             sizeChanged = true;
+        }
+
+        private IEnumerator SizeUp(GameObject player) {
+            yield return new WaitForSeconds(0.5f);
+            player.transform.parent.localScale = _baseSize * 1.5f;
+        }
+        private IEnumerator SizeDown(GameObject player) {
+            yield return new WaitForSeconds(0.5f);
+            player.transform.parent.localScale = _baseSize * 0.5f; 
         }
     }
 }
