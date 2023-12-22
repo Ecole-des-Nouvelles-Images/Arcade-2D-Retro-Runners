@@ -34,6 +34,7 @@ namespace Vincent_Prod.Scripts.Characters
         public int listID;
 
         private void Awake() {
+            _baseSpeed = speed;
             RespawnVFX.SetActive(false);
             kills = 0;
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -230,6 +231,8 @@ namespace Vincent_Prod.Scripts.Characters
         }
         
         private void Respawn() {
+            GameObject deathPart = Instantiate(DeathParticle, transform.position, quaternion.identity);
+            deathPart.transform.parent = null;
             _rigidbody2D.velocity = Vector2.zero;
             transform.position = respawnPoint.transform.position;
             health = 150;
@@ -366,7 +369,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             health -= 10;
             animator.SetBool("Damage", true);
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }
@@ -376,7 +381,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             health -= 5;
             animator.SetBool("Damage", true);
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }
@@ -386,7 +393,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             health -= 20;
             animator.SetBool("Damage", true);
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }

@@ -41,9 +41,10 @@ namespace Vincent_Prod.Scripts.Managers
         }
 
         private void ChooseEvent() {
-            int eventValue = Random.Range(0, 6);
+            /*int eventValue = Random.Range(0, 6);
             if (eventValue == 0 || eventValue == 3 || eventValue == 4) { TurnLights(); _lightChoosed = true; }
-            else if ((eventValue == 1 || eventValue == 3 || eventValue == 5)) { ChangeSize(); _sizeChoosed = true; }
+            else if ((eventValue == 1 || eventValue == 3 || eventValue == 5)) { ChangeSize(); _sizeChoosed = true; }*/
+            TurnLights();
         }
 
         private void RestaureDefault() {

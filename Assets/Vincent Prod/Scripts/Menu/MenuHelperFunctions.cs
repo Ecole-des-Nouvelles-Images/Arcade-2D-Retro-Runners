@@ -79,7 +79,7 @@ namespace Vincent_Prod.Scripts.Menu
 
         IEnumerator LobbyCountdown()
         {
-            int countdownDuration = 10;
+            int countdownDuration = 5;
 
             int remainingTime = countdownDuration;
             for(int i = 0; i < countdownDuration; i++)

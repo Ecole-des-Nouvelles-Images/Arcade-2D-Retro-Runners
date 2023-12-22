@@ -18,6 +18,7 @@ namespace Vincent_Prod.Scripts.Characters
         protected bool _isGrounded;
         public int _jumpCount;
         public bool iceArena;
+        protected float _baseSpeed;
         
         //Attack
         public float attackTime;
@@ -40,6 +41,7 @@ namespace Vincent_Prod.Scripts.Characters
         //Visuel
         public GameObject RespawnVFX;
         public ParticleSystem ImpactVFX;
+        public GameObject DeathParticle;
 
         //Pointers
         public GameObject upPointer;

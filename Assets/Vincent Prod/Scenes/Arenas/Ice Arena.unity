@@ -7571,6 +7571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameGestion
       objectReference: {fileID: 0}
+    - target: {fileID: 6397101584976188948, guid: fcc95b078c522dc4ba128a44f869224b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7244329243009754302, guid: fcc95b078c522dc4ba128a44f869224b,
         type: 3}
       propertyPath: m_LocalScale.x

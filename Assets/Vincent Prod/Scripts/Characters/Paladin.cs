@@ -39,6 +39,7 @@ namespace Vincent_Prod.Scripts.Characters
         public int listID;
 
         private void Awake() {
+            _baseSpeed = speed;
             RespawnVFX.SetActive(false);
             kills = 0;
             _canGuardHor = true;
@@ -54,6 +55,8 @@ namespace Vincent_Prod.Scripts.Characters
             upAttackBox.SetActive(false);
             health = 170;
             deaths = 0;
+            attackTime = 0.25f;
+            attackCooldown = 0.10f;
             _canAttack = true;
             _canMove = true;
             _rigidbody2D.velocity = Vector2.zero;
@@ -283,6 +286,8 @@ namespace Vincent_Prod.Scripts.Characters
         
         private void Respawn()
         {
+            GameObject deathPart = Instantiate(DeathParticle, transform.position, Quaternion.identity);
+            deathPart.transform.parent = null;
             _rigidbody2D.velocity = Vector2.zero;
             transform.position = respawnPoint.transform.position;
             health = 170;
@@ -361,7 +366,9 @@ namespace Vincent_Prod.Scripts.Characters
             animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 10;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }
@@ -371,7 +378,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             animator.SetBool("Damage", true);
             health -= 5;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }
@@ -380,7 +389,9 @@ namespace Vincent_Prod.Scripts.Characters
             animator.SetBool("Damage", true);
             _damageTake = true;
             health -= 20;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }

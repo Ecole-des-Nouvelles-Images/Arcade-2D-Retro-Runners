@@ -14,6 +14,10 @@ namespace Vincent_Prod.Scripts.Managers
         public int lastKillAmount;
         public int RankNumber;
         public List<Sprite> portraits = new List<Sprite>();
+        private bool _playerOneResults;
+        private bool _playerTwoResults;
+        private bool _playerThreeResults;
+        private bool _playerFourResults;
         
         private void Start()
         { 
@@ -34,33 +38,37 @@ namespace Vincent_Prod.Scripts.Managers
                if (killValue < 0) break;
                GameObject resultPanel = Instantiate(resultPanelPrefab, this.transform);
                UiResultPanel resultPanelScript = resultPanel.GetComponent<UiResultPanel>();
-               if (killValue == PlayerDataHandler.Instance.playerOneKills) {
+               if (killValue == PlayerDataHandler.Instance.playerOneKills && !_playerOneResults) {
                    Debug.Log(killValue);
                    ApplyScorePanel(resultPanelScript, killValue, PlayerDataHandler.Instance.playerOneCharacter,
                        PlayerDataHandler.Instance.playerOneKills, PlayerDataHandler.Instance.playerOneDeaths, 
                        Color.blue, PlayerDataHandler.Instance.playerOnePortrait);
                    resultPanelScript.killsNumber.text = PlayerDataHandler.Instance.playerOneKills.ToString();
+                   _playerOneResults = true;
                }
-               else if (killValue == PlayerDataHandler.Instance.playerTwoKills) {
+               else if (killValue == PlayerDataHandler.Instance.playerTwoKills && !_playerTwoResults) {
                    Debug.Log(killValue);
                    ApplyScorePanel(resultPanelScript, killValue, PlayerDataHandler.Instance.playerTwoCharacter, 
                        PlayerDataHandler.Instance.playerTwoKills, PlayerDataHandler.Instance.playerTwoDeaths, 
                        Color.red, PlayerDataHandler.Instance.playerTwoPortrait);
                    resultPanelScript.killsNumber.text = PlayerDataHandler.Instance.playerTwoKills.ToString();
+                   _playerTwoResults = true;
                }
-               else if (killValue == PlayerDataHandler.Instance.playerThreeKills) {
+               else if (killValue == PlayerDataHandler.Instance.playerThreeKills && !_playerThreeResults) {
                    Debug.Log(killValue);
                    ApplyScorePanel(resultPanelScript, killValue, PlayerDataHandler.Instance.playerThreeCharacter, 
                        PlayerDataHandler.Instance.playerThreeCharacter, PlayerDataHandler.Instance.playerThreeDeaths, 
                        Color.green, PlayerDataHandler.Instance.playerThreePortrait);
                    resultPanelScript.killsNumber.text = PlayerDataHandler.Instance.playerThreeKills.ToString();
+                   _playerThreeResults = true;
                }
-               else if (killValue == PlayerDataHandler.Instance.playerFourKills) {
+               else if (killValue == PlayerDataHandler.Instance.playerFourKills && !_playerFourResults) {
                    Debug.Log(killValue);
                    ApplyScorePanel(resultPanelScript, killValue, PlayerDataHandler.Instance.playerFourCharacter, 
                        PlayerDataHandler.Instance.playerFourKills, PlayerDataHandler.Instance.playerFourDeaths,
                        Color.yellow, PlayerDataHandler.Instance.playerFourPortrait);
                    resultPanelScript.killsNumber.text = PlayerDataHandler.Instance.playerFourKills.ToString();
+                   _playerFourResults = true;
                }
                RankNumber += 1;
            }

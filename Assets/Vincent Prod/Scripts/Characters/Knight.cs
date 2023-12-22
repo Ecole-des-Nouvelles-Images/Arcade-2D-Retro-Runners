@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
@@ -37,7 +38,9 @@ namespace Vincent_Prod.Scripts.Characters
         private PlayerManager _playerManager;
         public int listID;
 
-        private void Awake() {
+        private void Awake()
+        {
+            _baseSpeed = speed;
             RespawnVFX.SetActive(false);
             kills = 0;
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -54,7 +57,7 @@ namespace Vincent_Prod.Scripts.Characters
             _downAttack = false;
             _rigidbody2D.velocity = Vector2.zero;
             attackTime = 0.25f;
-            attackCooldown = 0.12f;
+            attackCooldown = 0.05f;
             respawnPoint = GameObject.FindWithTag("Respawn");
         }
 
@@ -265,6 +268,8 @@ namespace Vincent_Prod.Scripts.Characters
         
         private void Respawn()
         {
+            GameObject deathPart = Instantiate(DeathParticle, transform.position, quaternion.identity);
+            deathPart.transform.parent = null;
             _rigidbody2D.velocity = Vector2.zero;
             transform.position = respawnPoint.transform.position;
             health = 150;
@@ -354,7 +359,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             animator.SetBool("Damage",true);
             health -= 10;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             _damageTake = false;
             animator.SetBool("Damage",false);
         }
@@ -364,7 +371,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             animator.SetBool("Damage",true);
             health -= 5;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             _damageTake = false;
             animator.SetBool("Damage",false);
         }
@@ -374,7 +383,9 @@ namespace Vincent_Prod.Scripts.Characters
             _damageTake = true;
             animator.SetBool("Damage", true);
             health -= 20;
+            speed = speed / 3;
             yield return new WaitForSeconds(_iFrame);
+            speed = _baseSpeed;
             animator.SetBool("Damage", false);
             _damageTake = false;
         }

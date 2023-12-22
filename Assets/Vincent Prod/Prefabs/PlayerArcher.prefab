@@ -2129,6 +2129,8 @@ MonoBehaviour:
   kills: 0
   RespawnVFX: {fileID: 7314630148435591793}
   ImpactVFX: {fileID: 6533779647136980215}
+  DeathParticle: {fileID: 1845341814926739836, guid: 53f36a12c3fc5314794b249641b6148b,
+    type: 3}
   upPointer: {fileID: 1029736002941356876}
   leftPointer: {fileID: 4856313680942112302}
   rightPointer: {fileID: 2842315278872250468}

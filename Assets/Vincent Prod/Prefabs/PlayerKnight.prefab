@@ -3186,6 +3186,8 @@ MonoBehaviour:
   kills: 0
   RespawnVFX: {fileID: 33508832893045967}
   ImpactVFX: {fileID: 4564786066778133065}
+  DeathParticle: {fileID: 1845341814926739836, guid: 53f36a12c3fc5314794b249641b6148b,
+    type: 3}
   upPointer: {fileID: 960079697278190159}
   leftPointer: {fileID: 7435783826347410063}
   rightPointer: {fileID: 2114467883163572742}
@@ -4450,6 +4452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CommonCharacterVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699186154706021160, guid: 7bca00811f0f03b419dac61aa6c94fcb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
